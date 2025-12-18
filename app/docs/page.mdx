@@ -1,0 +1,28 @@
+export const metadata = {
+  title: "Overview",
+  alternates: { canonical: "/docs" },
+}
+
+# Overview
+
+Bienvenue dans la documentation de mon travail **Data Science**.
+
+> **Note**
+> Ce site suit un style “API docs” : navigation par sections, exemples de code, et liens vers les dépôts.
+
+## Axes
+- **Modèles supervisés** (classification / régression)
+- **Séries temporelles**
+- **NLP** (FR)
+- **Industrialisation** (tests, export, API)
+
+```python
+# Exemple scikit-learn : pipeline simple
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import StandardScaler
+from sklearn.linear_model import LogisticRegression
+
+clf = Pipeline(steps=[
+  ("scaler", StandardScaler()),
+  ("model", LogisticRegression(max_iter=200))
+])

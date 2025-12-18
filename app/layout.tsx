@@ -1,4 +1,5 @@
 // app/layout.tsx
+import type { Metadata } from "next";
 import "./globals.css";
 import Link from "next/link";
 import localFont from "next/font/local";
@@ -27,11 +28,26 @@ const cicleShadow = localFont({
 
 // 2) SEO
 export const metadata = {
-  title: "nicolas|destrac – Data Scientist",
+  metadataBase: new URL("https://nicolasdestrac.com"),
+  title: {
+    default: "Nicolas Destrac – Data Scientist",
+    template: "%s | Nicolas Destrac",
+  },
   description: "Nicolas Destrac – projets data, expérience et contact.",
-  other: {
-    "og:title": "Nicolas Destrac – Data Scientist",
-    "og:description": "Projets data, expérience, contact",
+  alternates: {
+    canonical: "/", // canonical de la home
+  },
+  openGraph: {
+    title: "Nicolas Destrac – Data Scientist",
+    description: "Projets data, expérience, contact",
+    url: "https://nicolasdestrac.com",
+    siteName: "nicolasdestrac.com",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Nicolas Destrac – Data Scientist",
+    description: "Projets data, expérience, contact",
   },
 };
 
