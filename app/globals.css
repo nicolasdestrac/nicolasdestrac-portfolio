@@ -17,3 +17,25 @@
     @apply border-border;}
   body {
     @apply bg-background text-foreground;}}
+
+
+/* Docs-like feel */
+.prose pre {
+  border: 1px solid rgb(38 38 38); /* neutral-800 */
+  border-radius: 12px;
+}
+
+.prose code {
+  background: rgb(23 23 23); /* neutral-900 */
+  border: 1px solid rgb(38 38 38);
+  border-radius: 8px;
+  padding: 0.15rem 0.35rem;
+}
+
+.prose a {
+  text-decoration: none;
+  border-bottom: 1px dotted rgb(115 115 115); /* neutral-500 */
+}
+.prose a:hover {
+  border-bottom-style: solid;
+}
