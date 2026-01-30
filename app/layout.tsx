@@ -1,7 +1,7 @@
 // app/layout.tsx
 import type { Metadata } from "next";
 import "./globals.css";
-import Link from "next/link";
+import { NavLink } from "@/components/NavLink";
 import localFont from "next/font/local";
 
 // 1) Déclare les polices locales (chemin = app/fonts/...)
@@ -65,10 +65,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <span className="font-shadow">destrac</span>
           </div>
           <div className="flex gap-4 text-sm text-neutral-300">
-            <Link href="/projets">Projets</Link>
-            <Link href="/a-propos">À propos</Link>
-            <Link href="/cv">CV</Link>
-            <Link href="/contact" className="underline">Contact</Link>
+            <NavLink href="/projets">Projets</NavLink>
+            <NavLink href="/a-propos">À propos</NavLink>
+            <NavLink href="/cv">CV</NavLink>
+            <NavLink href="/contact" className="underline">Contact</NavLink>
           </div>
         </nav>
         <main className="mx-auto max-w-6xl px-6 pb-16">{children}</main>
