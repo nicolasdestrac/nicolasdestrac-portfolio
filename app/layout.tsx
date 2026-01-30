@@ -1,6 +1,7 @@
 // app/layout.tsx
+import type { Metadata } from "next";
 import "./globals.css";
-import Link from "next/link";
+import { NavLink } from "@/components/NavLink";
 import localFont from "next/font/local";
 
 // 1) Déclare les polices locales (chemin = app/fonts/...)
@@ -27,11 +28,26 @@ const cicleShadow = localFont({
 
 // 2) SEO
 export const metadata = {
-  title: "nicolas|destrac – Data Scientist",
+  metadataBase: new URL("https://nicolasdestrac.com"),
+  title: {
+    default: "Nicolas Destrac – Data Scientist",
+    template: "%s | Nicolas Destrac",
+  },
   description: "Nicolas Destrac – projets data, expérience et contact.",
-  other: {
-    "og:title": "Nicolas Destrac – Data Scientist",
-    "og:description": "Projets data, expérience, contact",
+  alternates: {
+    canonical: "/", // canonical de la home
+  },
+  openGraph: {
+    title: "Nicolas Destrac – Data Scientist",
+    description: "Projets data, expérience, contact",
+    url: "https://nicolasdestrac.com",
+    siteName: "nicolasdestrac.com",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Nicolas Destrac – Data Scientist",
+    description: "Projets data, expérience, contact",
   },
 };
 
@@ -49,10 +65,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <span className="font-shadow">destrac</span>
           </div>
           <div className="flex gap-4 text-sm text-neutral-300">
-            <Link href="/projets">Projets</Link>
-            <Link href="/a-propos">À propos</Link>
-            <Link href="/cv">CV</Link>
-            <Link href="/contact" className="underline">Contact</Link>
+            <NavLink href="/projets">Projets</NavLink>
+            <NavLink href="/a-propos">À propos</NavLink>
+            <NavLink href="/cv">CV</NavLink>
+            <NavLink href="/contact" className="underline">Contact</NavLink>
           </div>
         </nav>
         <main className="mx-auto max-w-6xl px-6 pb-16">{children}</main>

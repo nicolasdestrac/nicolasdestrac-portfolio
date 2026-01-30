@@ -15,7 +15,7 @@ function TopBar() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 h-14 grid grid-cols-[1fr_auto_auto] gap-3 items-center">
         <div className="flex items-center gap-2 text-neutral-300">
           <Terminal className="h-4 w-4" />
-          <span className="font-medium">nicolas_destra c ▷ portfolio.ipynb</span>
+          <span className="font-medium">nicolas_destrac@notebook ▷ portfolio.ipynb</span>
         </div>
         <div className="hidden md:flex items-center gap-2">
           <Button variant="secondary" size="sm" className="rounded-xl"><Play className="h-4 w-4 mr-1"/>Run all</Button>
@@ -135,14 +135,15 @@ export default function NicolasNotebookPortfolio() {
           {/* Cell: Hero markdown */}
           <MarkdownCell>
             <h1 className="text-4xl md:text-6xl font-bold tracking-tight leading-tight animate-fade-up">
-              <span className="font-gordita">nicolas</span><span className="font-shadow">destrac</span><br/>
-              <span className="text-neutral-300 text-2xl md:text-3xl">Data Scientist (alternance → CDI)</span>
+              <span className="text-neutral-300 text-2xl md:text-3xl">Data Scientist</span>
             </h1>
             <p className="mt-4 text-neutral-300 max-w-2xl">
-              10+ ans de terrain (cinéma/pub) → reconversion data. Je nettoie, j'explique, je livre. Focus : vision par ordinateur, pipelines ML clairs, et dashboards opérationnels.
+               <b>Data scientist – LLM appliqués, vision par ordinateur, et pipelines ML explicables.</b>
+               <br />
+               Parcours initial de 15 ans en production audiovisuelle (cinéma, publicité).
             </p>
             <div className="mt-4 flex flex-wrap gap-2">
-              {['Python','pandas','scikit-learn','TensorFlow/Keras','SQL','Git','Docker (bases)','pfSense','WordPress'].map((t,i)=>(
+              {['Python', 'NumPy','Pandas','Scikit-learn','TensorFlow/Keras','SQL','Git','Docker','PyTorch'].map((t,i)=>(
                 <span key={i} className="text-xs px-2 py-1 rounded-lg border border-neutral-800/80 bg-neutral-900/60">{t}</span>
               ))}
             </div>
@@ -222,8 +223,8 @@ experience.sort_values('période', ascending=False)`}>
           <CodeCell idx={4} code={`# send_message(to='nicolas.destrac@gmail.com')`}>
             <div className="flex flex-wrap gap-3">
               <Button asChild className="rounded-xl"><a href="mailto:nicolas.destrac@gmail.com"><Mail className="h-4 w-4 mr-2"/>Email</a></Button>
-              <Button asChild variant="secondary" className="rounded-xl"><a href="https://www.linkedin.com/in/" target="_blank" rel="noreferrer"><Linkedin className="h-4 w-4 mr-2"/>LinkedIn</a></Button>
-              <Button asChild variant="secondary" className="rounded-xl"><a href="https://github.com/" target="_blank" rel="noreferrer"><Github className="h-4 w-4 mr-2"/>GitHub</a></Button>
+              <Button asChild variant="secondary" className="rounded-xl"><a href="https://www.linkedin.com/in/nicolasdestrac" target="_blank" rel="noreferrer"><Linkedin className="h-4 w-4 mr-2"/>LinkedIn</a></Button>
+              <Button asChild variant="secondary" className="rounded-xl"><a href="https://github.com/nicolasdestrac" target="_blank" rel="noreferrer"><Github className="h-4 w-4 mr-2"/>GitHub</a></Button>
             </div>
           </CodeCell>
 

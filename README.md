@@ -1,21 +1,31 @@
-# Portfolio – Nicolas Destrac (Next.js 14 + Tailwind)
+# Portfolio – Nicolas Destrac (Next.js 15, style notebook)
+
+![CI](https://github.com/nicolasdestrac/nicolasdestrac-portfolio/actions/workflows/ci.yml/badge.svg)
+
+Site perso façon **notebook/data lab** (App Router, Tailwind, polices locales Cicle).
+Objectif : présenter mes projets Data (alternance → CDI) avec un rendu type Jupyter/VS Code.
+
+## Stack
+- **Next.js 15** (App Router) • **React 18** • **Node 20+**
+- **Tailwind CSS** (+ classes utilitaires, variantes responsive)
+- **shadcn/ui** (Card, Button)
+- **Polices locales** Cicle (Fina/Gordita/Shadow) via `next/font/local`
 
 ## Démarrage
+
 ```bash
+# 1) Cloner
+git clone https://github.com/nicolasdestrac/nicolasdestrac-portfolio.git
+cd nicolasdestrac-portfolio
+
+# 2) Node 20 (recommandé)
+# si nvm :
+nvm install 20
+nvm use 20
+
+# 3) Dépendances
 npm i
+
+# 4) Dev
 npm run dev
-# puis ouvrir http://localhost:3000
-```
-
-## Structure
-- `app/` App Router (pages : `/`, `/projets`, `/a-propos`, `/cv`, `/videos`, `/liens`, `/contact`)
-- `public/legacy/` images importées depuis l'ancien site (0 fichiers copiés)
-
-## Redirections 301
-Voir `next.config.js` (anciennes pages `.html` → nouvelles routes).
-
-## À faire
-- Ajouter `public/cv.pdf`
-- Remplir contenu des pages (MDX possible plus tard)
-- Brancher le formulaire (Formspree/EmailJS)
-- Déployer sur Vercel et pointer le domaine OVH
+# http://localhost:3000
