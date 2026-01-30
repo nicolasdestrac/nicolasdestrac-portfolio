@@ -2,7 +2,9 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { NavLink } from "@/components/NavLink";
+import { ThemeProvider } from "@/components/ThemeProvider";
 import localFont from "next/font/local";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 // 1) Déclare les polices locales (chemin = app/fonts/...)
 const cicleFina = localFont({
@@ -27,7 +29,7 @@ const cicleShadow = localFont({
 });
 
 // 2) SEO
-export const metadata = {
+export const metadata: Metadata = {
   metadataBase: new URL("https://nicolasdestrac.com"),
   title: {
     default: "Nicolas Destrac – Data Scientist",
@@ -35,7 +37,7 @@ export const metadata = {
   },
   description: "Nicolas Destrac – projets data, expérience et contact.",
   alternates: {
-    canonical: "/", // canonical de la home
+    canonical: "/",
   },
   openGraph: {
     title: "Nicolas Destrac – Data Scientist",
@@ -57,27 +59,39 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html
       lang="fr"
       className={`${cicleFina.variable} ${cicleGordita.variable} ${cicleShadow.variable}`}
+      suppressHydrationWarning
     >
-      <body className="bg-neutral-950 text-neutral-100">
-        <nav className="mx-auto max-w-6xl px-6 py-6 flex items-center justify-between">
-          <div className="tracking-tight text-[50px] leading-none">
-            <span className="font-gordita">nicolas</span>
-            <span className="font-shadow">destrac</span>
-          </div>
-          <div className="flex gap-4 text-sm text-neutral-300">
-            <NavLink href="/projets">Projets</NavLink>
-            <NavLink href="/a-propos">À propos</NavLink>
-            <NavLink href="/cv">CV</NavLink>
-            <NavLink href="/contact" className="underline">Contact</NavLink>
-          </div>
-        </nav>
-        <main className="mx-auto max-w-6xl px-6 pb-16">{children}</main>
-        <footer className="mx-auto max-w-6xl px-6 pb-12 text-sm text-neutral-400 flex items-center">
-          © {new Date().getFullYear()}{" "}
-          <span className="ml-1 font-gordita">nicolas</span>
-          <span className="font-shadow">destrac</span>
-        </footer>
+      <body className="min-h-screen bg-white text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100">
+        <ThemeProvider>
+          <header className="border-b border-neutral-200 bg-white/80 backdrop-blur dark:border-neutral-800 dark:bg-neutral-950/80">
+            <nav className="mx-auto max-w-6xl px-6 py-6 flex items-center justify-between">
+              <div className="tracking-tight text-[50px] leading-none">
+                <a href="/" className="inline-flex items-baseline">
+                  <span className="font-gordita">nicolas</span>
+                  <span className="font-shadow">destrac</span>
+                </a>
+              </div>
 
+              <div className="flex items-center gap-4 text-sm text-neutral-700 dark:text-neutral-300">
+                <NavLink href="/projets">Projets</NavLink>
+                <NavLink href="/a-propos">À propos</NavLink>
+                <NavLink href="/cv">CV</NavLink>
+                <NavLink href="/contact">Contact</NavLink>
+
+                {/* Toggle light/dark */}
+                <ThemeToggle />
+              </div>
+            </nav>
+          </header>
+
+          <main className="mx-auto max-w-6xl px-6 pb-16">{children}</main>
+
+          <footer className="mx-auto max-w-6xl px-6 pb-12 text-sm text-neutral-600 dark:text-neutral-400 flex items-center">
+            © {new Date().getFullYear()}{" "}
+            <span className="ml-1 font-gordita">nicolas</span>
+            <span className="font-shadow">destrac</span>
+          </footer>
+        </ThemeProvider>
       </body>
     </html>
   );
