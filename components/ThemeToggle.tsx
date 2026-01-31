@@ -4,11 +4,10 @@ import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 import { Sun, Moon } from "lucide-react";
 
-export function ThemeToggle() {
+export function ThemeToggle({ className = "" }: { className?: string }) {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
-  // évite un mismatch SSR/CSR
   useEffect(() => setMounted(true), []);
   if (!mounted) return null;
 
@@ -18,12 +17,20 @@ export function ThemeToggle() {
     <button
       type="button"
       onClick={() => setTheme(isDark ? "light" : "dark")}
-      className="inline-flex items-center justify-center rounded border border-neutral-800 bg-neutral-950/50 px-2.5 py-1.5 text-neutral-200 hover:bg-neutral-900 dark:border-neutral-800 dark:bg-neutral-950/50 dark:text-neutral-200
-                 light:border-neutral-200 light:bg-white/60 light:text-neutral-900"
       aria-label="Basculer thème"
       title="Basculer thème"
+      className={[
+        // base — identique NavLink
+        "inline-flex items-center gap-1 rounded px-2 py-1.5 text-sm border transition-colors",
+        "border-transparent",
+        // light
+        "text-neutral-700 hover:bg-neutral-100 hover:text-neutral-900",
+        // dark
+        "dark:text-neutral-300 dark:hover:bg-neutral-900/60 dark:hover:text-neutral-100",
+        className,
+      ].join(" ")}
     >
-      {isDark ? <Sun size={16} /> : <Moon size={16} />}
+      {isDark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
     </button>
   );
 }

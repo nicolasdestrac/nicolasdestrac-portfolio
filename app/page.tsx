@@ -225,6 +225,7 @@ export default function NicolasNotebookPortfolio() {
                 "Git",
                 "Docker",
                 "PyTorch",
+                "AWS",
               ].map((t, i) => (
                 <span
                   key={i}
@@ -354,9 +355,6 @@ print('env ready')`}
             <h2 id="contact" className="text-2xl md:text-3xl font-semibold">
               Contact
             </h2>
-            <p className="text-neutral-700 dark:text-neutral-300">
-              Discutons de votre besoin → alternance/CDI, prototypage rapide, dashboards.
-            </p>
           </MarkdownCell>
 
           <CodeCell idx={4} code={`# send_message(to='nicolas.destrac@gmail.com')`}>

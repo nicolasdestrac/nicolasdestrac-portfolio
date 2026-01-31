@@ -46,11 +46,6 @@ export const metadata: Metadata = {
     siteName: "nicolasdestrac.com",
     type: "website",
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Nicolas Destrac – Data Scientist",
-    description: "Projets data, expérience, contact",
-  },
 };
 
 // 3) Layout
