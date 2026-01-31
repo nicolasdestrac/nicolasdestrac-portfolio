@@ -30,8 +30,8 @@ export default function Old() {
       <iframe
         src="/legacy/index.html"
         title="Ancien site"
-        className="w-full border-0"
-        style={{ height: "calc(100vh - 160px)" }}
+        className="h-full w-full border-0"
+        style={{ height: "72vh" }}
       />
     </div>
   );
