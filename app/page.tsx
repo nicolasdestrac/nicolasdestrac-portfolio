@@ -175,19 +175,19 @@ export default function NicolasNotebookPortfolio() {
       title: "Classification d'images e-commerce",
       desc: "Transfer learning (VGG16), data augmentation, réduction de dimension, comparaison par ARI.",
       tags: ["CNN", "VGG16", "KMeans", "t-SNE"],
-      link: "#",
+      link: "/projets",
     },
     {
       title: "Prévision conso & CO₂ bâtiments",
       desc: "Régression sur features structurelles, nettoyage, outliers, métriques explicites.",
       tags: ["pandas", "scikit-learn", "régression"],
-      link: "#",
+      link: "/projets",
     },
     {
       title: "Intranet WordPress – KPI",
       desc: "Refactor, tables SQL, monitoring Uptime Kuma, intégrations Teams/Email.",
       tags: ["WordPress", "SQL", "Monitoring"],
-      link: "#",
+      link: "/projets",
     },
   ];
 
