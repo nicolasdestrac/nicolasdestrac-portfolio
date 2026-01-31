@@ -1,6 +1,7 @@
 // app/archives/page.tsx
 import { Button } from "@/components/ui/button";
 import { Github } from "lucide-react";
+import { ScrollToTop } from "@/components/ScrollToTop";
 
 export default function Old() {
   return (
@@ -30,7 +31,7 @@ export default function Old() {
         src="/legacy/index.html"
         title="Ancien site"
         className="w-full border-0"
-        style={{ height: "calc(100vh - 160px)" }} // ajuste si besoin
+        style={{ height: "calc(100vh - 160px)" }}
       />
     </div>
   );
