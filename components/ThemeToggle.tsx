@@ -2,35 +2,54 @@
 
 import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
-import { Sun, Moon } from "lucide-react";
+import { Sun, Moon, Laptop } from "lucide-react";
 
-export function ThemeToggle({ className = "" }: { className?: string }) {
+type ThemeChoice = "system" | "light" | "dark";
+
+export function ThemeToggle() {
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => setMounted(true), []);
   if (!mounted) return null;
 
-  const isDark = theme === "dark";
+  const current = (theme ?? "system") as ThemeChoice;
+
+  const items: Array<{ value: ThemeChoice; label: string; Icon: any }> = [
+    { value: "system", label: "Système", Icon: Laptop },
+    { value: "light", label: "Clair", Icon: Sun },
+    { value: "dark", label: "Sombre", Icon: Moon },
+  ];
 
   return (
-    <button
-      type="button"
-      onClick={() => setTheme(isDark ? "light" : "dark")}
-      aria-label="Basculer thème"
-      title="Basculer thème"
-      className={[
-        // base — identique NavLink
-        "inline-flex items-center gap-1 rounded px-2 py-1.5 text-sm border transition-colors",
-        "border-transparent",
-        // light
-        "text-neutral-700 hover:bg-neutral-100 hover:text-neutral-900",
-        // dark
-        "dark:text-neutral-300 dark:hover:bg-neutral-900/60 dark:hover:text-neutral-100",
-        className,
-      ].join(" ")}
+    <div
+      role="group"
+      aria-label="Thème"
+      className="inline-flex items-center rounded-lg border border-neutral-200 bg-white/60 p-1
+                 dark:border-neutral-800 dark:bg-neutral-950/40"
     >
-      {isDark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
-    </button>
+      {items.map(({ value, label, Icon }) => {
+        const active = current === value;
+
+        return (
+          <button
+            key={value}
+            type="button"
+            onClick={() => setTheme(value)}
+            className={
+              "inline-flex items-center gap-2 rounded-md px-2.5 py-1.5 text-sm transition " +
+              (active
+                ? "bg-neutral-900 text-neutral-100 dark:bg-neutral-100 dark:text-neutral-900"
+                : "text-neutral-700 hover:bg-neutral-100 dark:text-neutral-300 dark:hover:bg-neutral-900/60")
+            }
+            aria-pressed={active}
+            title={label}
+          >
+            <Icon size={16} />
+            <span className="hidden md:inline">{label}</span>
+          </button>
+        );
+      })}
+    </div>
   );
 }

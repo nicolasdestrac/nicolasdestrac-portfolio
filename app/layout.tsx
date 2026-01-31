@@ -5,6 +5,7 @@ import { NavLink } from "@/components/NavLink";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import localFont from "next/font/local";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { ScrollToTop } from "@/components/ScrollToTop";
 
 // 1) Déclare les polices locales (chemin = app/fonts/...)
 const cicleFina = localFont({
@@ -84,6 +85,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <NavLink href="/projets">Projets</NavLink>
                 <NavLink href="/cv">CV</NavLink>
                 <NavLink href="/#contact">Contact</NavLink>
+                <NavLink href="/old">Ancien site</NavLink>
                 {/* Toggle light/dark */}
                 <ThemeToggle />
               </div>
@@ -98,6 +100,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <span className="font-shadow">destrac</span> · potfolio v2.0
           </footer>
         </ThemeProvider>
+        <ScrollToTop />
       </body>
     </html>
   );
