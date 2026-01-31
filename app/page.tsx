@@ -23,8 +23,8 @@ import {
 
 function TopBar() {
   return (
-    <div className="sticky top-0 z-40 border-b border-neutral-200 bg-white/80 backdrop-blur supports-[backdrop-filter]:bg-white/60 dark:border-neutral-800/80 dark:bg-neutral-950/80 dark:supports-[backdrop-filter]:bg-neutral-950/60">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 h-14 grid grid-cols-[1fr_auto_auto] gap-3 items-center">
+    <div className="sticky top-20 h-15 z-40 border-b border-neutral-200 bg-white/80 backdrop-blur supports-[backdrop-filter]:bg-white/60 dark:border-neutral-800/80 dark:bg-neutral-950/80 dark:supports-[backdrop-filter]:bg-neutral-950/60">
+      <div className="mx-auto max-w-8xl px-4 sm:px-6 h-14 grid grid-cols-[1fr_auto_auto] gap-3 items-center">
         <div className="flex items-center gap-2 text-neutral-700 dark:text-neutral-300">
           <Terminal className="h-4 w-4" />
           <span className="font-medium">
@@ -194,25 +194,23 @@ export default function NicolasNotebookPortfolio() {
   return (
     <div className="min-h-screen bg-white text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100">
       <TopBar />
-      <div className="mx-auto max-w-7xl grid grid-cols-1 lg:grid-cols-[16rem_1fr]">
+      <div className="max-w-8xl grid grid-cols-1 lg:grid-cols-[16rem_1fr]">
         <Sidebar />
 
         <main className="px-4 sm:px-6 pb-24">
           {/* Cell: Hero markdown */}
           <MarkdownCell>
-            <h1 className="text-4xl md:text-6xl font-bold tracking-tight leading-tight">
-              <span className="text-neutral-700 dark:text-neutral-300 text-2xl md:text-3xl">
-                Data Scientist
-              </span>
-            </h1>
+            <h2 id="projets" className="text-2xl md:text-3xl font-semibold">
+              Data Scientist
+            </h2>
 
-            <p className="mt-4 text-neutral-700 dark:text-neutral-300 max-w-2xl">
+            <h3 className="mt-4 text-neutral-700 dark:text-neutral-300 max-w-2xl">
               <b>
                 Data scientist – LLM appliqués, vision par ordinateur, et pipelines ML explicables.
               </b>
               <br />
               Parcours initial de 15 ans en production audiovisuelle (cinéma, publicité).
-            </p>
+            </h3>
 
             <div className="mt-4 flex flex-wrap gap-2">
               {[
@@ -387,13 +385,6 @@ print('env ready')`}
               </Button>
             </div>
           </CodeCell>
-
-          {/* Footer */}
-          <div className="mt-10 pt-6 border-t border-neutral-200 text-sm text-neutral-600 dark:border-neutral-800/80 dark:text-neutral-500">
-            © {new Date().getFullYear()}{" "}
-            <span className="font-gordita">nicolas</span>
-            <span className="font-shadow">destrac</span> · portfolio notebook v1
-          </div>
         </main>
       </div>
     </div>
