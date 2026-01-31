@@ -36,6 +36,19 @@ export const metadata: Metadata = {
     template: "%s | Nicolas Destrac",
   },
   description: "Nicolas Destrac – projets data, expérience et contact.",
+  robots: {
+    index: false,
+    follow: false,
+    nocache: true,
+    googleBot: {
+      index: false,
+      follow: false,
+      noimageindex: true,
+      "max-video-preview": -1,
+      "max-image-preview": "none",
+      "max-snippet": -1,
+    },
+  },
   alternates: {
     canonical: "/",
   },
@@ -58,8 +71,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     >
       <body className="min-h-screen bg-white text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100">
         <ThemeProvider>
-          <header className="border-b border-neutral-200 bg-white/80 backdrop-blur dark:border-neutral-800 dark:bg-neutral-950/80">
-            <nav className="mx-auto max-w-6xl px-6 py-6 flex items-center justify-between">
+          <header className="sticky top-0 z-50 border-b border-neutral-200 bg-white/80 backdrop-blur dark:border-neutral-800 dark:bg-neutral-950/80">
+            <nav className="mx-auto max-w-8xl px-4 h-20 flex items-center justify-between">
               <div className="tracking-tight text-[50px] leading-none">
                 <a href="/" className="inline-flex items-baseline">
                   <span className="font-gordita">nicolas</span>
@@ -71,20 +84,19 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <NavLink href="/projets">Projets</NavLink>
                 <NavLink href="/a-propos">À propos</NavLink>
                 <NavLink href="/cv">CV</NavLink>
-                <NavLink href="/contact">Contact</NavLink>
-
+                <NavLink href="#contact">Contact</NavLink>
                 {/* Toggle light/dark */}
                 <ThemeToggle />
               </div>
             </nav>
           </header>
 
-          <main className="mx-auto max-w-6xl px-6 pb-16">{children}</main>
+          <main className="max-w-auto pb-16">{children}</main>
 
-          <footer className="mx-auto max-w-6xl px-6 pb-12 text-sm text-neutral-600 dark:text-neutral-400 flex items-center">
+          <footer className="mx-auto max-w-8xl px-6 pb-12 text-sm text-neutral-600 dark:text-neutral-400 flex items-center">
             © {new Date().getFullYear()}{" "}
             <span className="ml-1 font-gordita">nicolas</span>
-            <span className="font-shadow">destrac</span>
+            <span className="font-shadow">destrac</span> · potfolio v2.0
           </footer>
         </ThemeProvider>
       </body>
