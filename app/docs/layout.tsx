@@ -1,6 +1,7 @@
 import Link from "next/link";
 import "../globals.css";
 import { NavLink } from "@/components/NavLink";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 const NAV = [
   { group: "Getting Started", items: [
@@ -21,9 +22,10 @@ const NAV = [
 
 export default function DocsLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="min-h-screen bg-neutral-950 text-neutral-100">
+    <div className="min-h-screen bg-white text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100">
       {/* Header */}
-      <header className="sticky top-0 z-40 border-b border-neutral-800 bg-neutral-950/80 backdrop-blur">
+      <header className="sticky top-0 z-40 border-b border-neutral-200 bg-white/80 backdrop-blur
+                   dark:border-neutral-800 dark:bg-neutral-950/80">
         <div className="mx-auto max-w-7xl px-6 h-14 flex items-center justify-between">
           <Link href="/" className="font-semibold tracking-tight">
             nicolas<span className="font-shadow">destrac</span>
@@ -63,7 +65,8 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
 
         {/* Content */}
         <main className="col-span-12 md:col-span-9 lg:col-span-7
-          prose prose-invert prose-neutral max-w-none
+          prose prose-neutral max-w-none
+          dark:prose-invert
           prose-headings:scroll-mt-20
           prose-code:before:content-[''] prose-code:after:content-['']
         ">
