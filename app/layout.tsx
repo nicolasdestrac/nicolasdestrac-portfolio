@@ -83,7 +83,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
               <div className="flex items-center gap-4 text-sm text-neutral-700 dark:text-neutral-300">
                 <NavLink href="/projets">Projets</NavLink>
-                <NavLink href="/cv">CV</NavLink>
                 <NavLink href="/#contact">Contact</NavLink>
                 <NavLink href="/old">Ancien site</NavLink>
                 {/* Toggle light/dark */}

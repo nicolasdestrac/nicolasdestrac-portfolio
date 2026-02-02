@@ -315,8 +315,8 @@ print('env ready')`}
               {[
                 {
                   period: "2024 → 2025",
-                  role: "Apprenti Data Scientist (RNCP 7)",
-                  org: "OpenClassrooms × Isphers",
+                  role: "Apprenti Data Scientist",
+                  org: "OpenClassrooms (RNCP 7) × Isphers",
                   details:
                     "Nettoyage, features, dashboards, intégrations WordPress & data, monitoring.",
                 },
