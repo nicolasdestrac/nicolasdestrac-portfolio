@@ -4,15 +4,12 @@ import {
   Play,
   Square,
   Terminal,
-  FileText,
-  BarChart3,
   Mail,
   Linkedin,
   Github,
   Cpu,
   ChevronDown,
   Database,
-  FolderTree,
 } from "lucide-react";
 
 // ===
@@ -28,7 +25,7 @@ function TopBar() {
         <div className="flex items-center gap-2 text-neutral-700 dark:text-neutral-300">
           <Terminal className="h-4 w-4" />
           <span className="font-medium">
-            nicolas_destrac@notebook ▷ portfolio.ipynb
+            nicolas_destrac@notebook ▷ accueil.ipynb
           </span>
         </div>
 
