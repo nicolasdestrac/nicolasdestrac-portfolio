@@ -4,15 +4,12 @@ import {
   Play,
   Square,
   Terminal,
-  FileText,
-  BarChart3,
   Mail,
   Linkedin,
   Github,
   Cpu,
   ChevronDown,
   Database,
-  FolderTree,
 } from "lucide-react";
 
 // ===
@@ -23,12 +20,12 @@ import {
 
 function TopBar() {
   return (
-    <div className="sticky top-20 h-15 z-40 border-b border-neutral-200 bg-white/80 backdrop-blur supports-[backdrop-filter]:bg-white/60 dark:border-neutral-800/80 dark:bg-neutral-950/80 dark:supports-[backdrop-filter]:bg-neutral-950/60">
+    <div className="sticky h-15 z-40 border-b border-neutral-200 bg-white/80 backdrop-blur supports-[backdrop-filter]:bg-white/60 dark:border-neutral-800/80 dark:bg-neutral-950/80 dark:supports-[backdrop-filter]:bg-neutral-950/60">
       <div className="mx-auto max-w-8xl px-4 sm:px-6 h-14 grid grid-cols-[1fr_auto_auto] gap-3 items-center">
         <div className="flex items-center gap-2 text-neutral-700 dark:text-neutral-300">
           <Terminal className="h-4 w-4" />
           <span className="font-medium">
-            nicolas_destrac@notebook ▷ portfolio.ipynb
+            nicolas_destrac@notebook ▷ accueil.ipynb
           </span>
         </div>
 
@@ -54,63 +51,6 @@ function TopBar() {
         </div>
       </div>
     </div>
-  );
-}
-
-function Sidebar() {
-  return (
-    <aside className="hidden lg:block w-64 shrink-0 border-r border-neutral-200 bg-white/60 dark:border-neutral-800/80 dark:bg-neutral-950/60">
-      <div className="p-4 text-xs uppercase tracking-wide text-neutral-600 dark:text-neutral-400">
-        Explorateur
-      </div>
-
-      <div className="px-2">
-        <div className="flex items-center gap-1 px-2 py-1.5 rounded-lg hover:bg-neutral-100 text-neutral-700 cursor-default dark:hover:bg-neutral-900/60 dark:text-neutral-300">
-          <FolderTree className="h-4 w-4" />
-          <span className="ml-1 font-medium">/workspace</span>
-        </div>
-
-        {[
-          { name: "portfolio.ipynb", icon: <FileText className="h-3.5 w-3.5" /> },
-          { name: "projets.md", icon: <FileText className="h-3.5 w-3.5" /> },
-          { name: "kpi_dashboard.py", icon: <Terminal className="h-3.5 w-3.5" /> },
-          { name: "model_report.html", icon: <BarChart3 className="h-3.5 w-3.5" /> },
-        ].map((f, i) => (
-          <div
-            key={i}
-            className="flex items-center gap-2 px-3 py-1.5 ml-4 rounded-lg hover:bg-neutral-100 text-neutral-600 dark:hover:bg-neutral-900/60 dark:text-neutral-400"
-          >
-            {f.icon}
-            <span className="truncate">{f.name}</span>
-          </div>
-        ))}
-      </div>
-
-      <div className="p-4 text-xs uppercase tracking-wide text-neutral-600 dark:text-neutral-400">
-        Raccourcis
-      </div>
-
-      <div className="px-2 pb-6 flex flex-col gap-2">
-        <a
-          className="px-3 py-1.5 rounded-lg border border-neutral-200 hover:border-neutral-300 text-neutral-800 hover:bg-neutral-50 dark:border-neutral-800/80 dark:hover:border-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-900/40"
-          href="#projets"
-        >
-          Projets
-        </a>
-        <a
-          className="px-3 py-1.5 rounded-lg border border-neutral-200 hover:border-neutral-300 text-neutral-800 hover:bg-neutral-50 dark:border-neutral-800/80 dark:hover:border-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-900/40"
-          href="#experience"
-        >
-          Expérience
-        </a>
-        <a
-          className="px-3 py-1.5 rounded-lg border border-neutral-200 hover:border-neutral-300 text-neutral-800 hover:bg-neutral-50 dark:border-neutral-800/80 dark:hover:border-neutral-700 dark:text-neutral-300 dark:hover:bg-neutral-900/40"
-          href="#contact"
-        >
-          Contact
-        </a>
-      </div>
-    </aside>
   );
 }
 
@@ -194,9 +134,6 @@ export default function NicolasNotebookPortfolio() {
   return (
     <div className="min-h-screen bg-white text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100">
       <TopBar />
-      <div className="max-w-8xl grid grid-cols-1 lg:grid-cols-[16rem_1fr]">
-        <Sidebar />
-
         <main className="px-4 sm:px-6 pb-24">
           {/* Cell: Hero markdown */}
           <MarkdownCell>
@@ -387,6 +324,5 @@ print('env ready')`}
           </CodeCell>
         </main>
       </div>
-    </div>
   );
 }
