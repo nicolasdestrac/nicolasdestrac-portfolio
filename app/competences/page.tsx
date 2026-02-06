@@ -141,29 +141,23 @@ export default function NicolasNotebookPortfolio() {
           {/* Cell: Hero markdown */}
           <MarkdownCell>
             <h2 id="projets" className="text-2xl md:text-3xl font-semibold">
-              Data Scientist
+              Environnements
             </h2>
 
             <h3 className="mt-4 text-neutral-700 dark:text-neutral-300 max-w-2xl">
               <b>
-                Data scientist – LLM appliqués, vision par ordinateur, et pipelines ML explicables.
+                À l'aise dans les environnements Linux, Mac, Windows, Jupyter, VS Code... et prêt à m'adapter à de nouveaux environnements selon les besoins du projet.
               </b>
-              <br />
-              Parcours initial de 15 ans en production audiovisuelle (cinéma, publicité).
             </h3>
 
             <div className="mt-4 flex flex-wrap gap-2">
               {[
-                "Python",
-                "NumPy",
-                "Pandas",
-                "Scikit-learn",
-                "TensorFlow/Keras",
-                "SQL",
-                "Git",
-                "Docker",
-                "PyTorch",
-                "AWS",
+                "Debian/Ubuntu",
+                "bash/zsh",
+                "MacOS",
+                "PowerShell",
+                "Jupyter Notebook",
+                "VS Code",
               ].map((t, i) => (
                 <span
                   key={i}
@@ -178,15 +172,35 @@ export default function NicolasNotebookPortfolio() {
           {/* Cell: code to load libraries */}
           <CodeCell
             idx={1}
-            code={`import numpy as np
-import pandas as pd
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score
-print('env ready')`}
+            code={`import platform
+import sys
+import os
+
+env = {
+    "os": platform.system(),
+    "os_version": platform.release(),
+    "python": sys.version.split()[0],
+    "shell": os.environ.get("SHELL", "unknown"),
+    "notebook": True
+}
+
+env`}
           >
             <div className="text-sm text-emerald-600 dark:text-emerald-400">
               env ready
             </div>
+          </CodeCell>
+                    <CodeCell
+            idx={1}
+            code={`{
+  "os": "Linux",
+  "os_version": "6.5.0",
+  "python": "3.11.6",
+  "shell": "/bin/zsh",
+  "notebook": true
+}
+`}
+          >
           </CodeCell>
 
           {/* Cell: Projects */}
