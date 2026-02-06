@@ -4,22 +4,17 @@ import {
   Play,
   Square,
   Terminal,
-  FileText,
-  BarChart3,
-  Mail,
-  Linkedin,
-  Github,
   Cpu,
   ChevronDown,
   Database,
-  FolderTree,
+  GitBranch,
+  Wrench,
+  Cloud,
+  ShieldCheck,
+  Brain,
+  Camera,
+  BookOpen,
 } from "lucide-react";
-
-// ===
-// Nicolas Destrac – Notebook style portfolio (v1)
-// Theme: interface inspirée d'un notebook/data lab (VS Code/Jupyter vibes)
-// Tech: React + Tailwind + shadcn/ui
-// ===
 
 function TopBar() {
   return (
@@ -28,7 +23,7 @@ function TopBar() {
         <div className="flex items-center gap-2 text-neutral-700 dark:text-neutral-300">
           <Terminal className="h-4 w-4" />
           <span className="font-medium">
-            nicolas_destrac@notebook ▷ portfolio.ipynb
+            nicolas_destrac@notebook ▷ competences.ipynb
           </span>
         </div>
 
@@ -59,11 +54,7 @@ function TopBar() {
 
 function CellLabel({ idx, type }: { idx: number; type: "md" | "code" | "out" }) {
   const label =
-    type === "md"
-      ? "[markdown]"
-      : type === "code"
-      ? "In [" + idx + "]:"
-      : "Out[" + idx + "]:";
+    type === "md" ? "[markdown]" : type === "code" ? `In [${idx}]:` : `Out[${idx}]:`;
   return (
     <div className="w-28 pr-4 text-right text-[11px] leading-6 text-neutral-500 select-none">
       {label}
@@ -75,9 +66,7 @@ function MarkdownCell({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex items-start gap-4 py-4">
       <CellLabel idx={0} type="md" />
-      <div className="prose prose-neutral max-w-none dark:prose-invert">
-        {children}
-      </div>
+      <div className="prose prose-neutral max-w-none dark:prose-invert">{children}</div>
     </div>
   );
 }
@@ -112,234 +101,274 @@ function CodeCell({
   );
 }
 
-export default function NicolasNotebookPortfolio() {
-  const projects = [
-    {
-      title: "Classification d'images e-commerce",
-      desc: "Transfer learning (VGG16), data augmentation, réduction de dimension, comparaison par ARI.",
-      tags: ["CNN", "VGG16", "KMeans", "t-SNE"],
-      link: "/projets",
-    },
-    {
-      title: "Prévision conso & CO₂ bâtiments",
-      desc: "Régression sur features structurelles, nettoyage, outliers, métriques explicites.",
-      tags: ["pandas", "scikit-learn", "régression"],
-      link: "/projets",
-    },
-    {
-      title: "Intranet WordPress – KPI",
-      desc: "Refactor, tables SQL, monitoring Uptime Kuma, intégrations Teams/Email.",
-      tags: ["WordPress", "SQL", "Monitoring"],
-      link: "/projets",
-    },
-  ];
+function OutOneLine({ value }: { value: unknown }) {
+  return (
+    <div className="rounded-2xl border border-neutral-200 bg-white p-4 text-sm text-neutral-800 dark:bg-neutral-900/60 dark:border-neutral-800/80 dark:text-neutral-200">
+      <code>{JSON.stringify(value)}</code>
+    </div>
+  );
+}
+
+function Tags({ items }: { items: string[] }) {
+  return (
+    <div className="mt-3 flex flex-wrap gap-2">
+      {items.map((t) => (
+        <span
+          key={t}
+          className="text-xs px-2 py-1 rounded-lg border border-neutral-200 bg-neutral-50 text-neutral-800 dark:border-neutral-800/80 dark:bg-neutral-900/60 dark:text-neutral-200"
+        >
+          {t}
+        </span>
+      ))}
+    </div>
+  );
+}
+
+export default function CompetencesPage() {
+  let i = 1;
+
+  // === OUT mock (style notebook) ===
+  const outGit = {
+    branch: "feat/docs-theme",
+    status: "clean",
+    last_commit: "dcf742c",
+    remote: "origin",
+    checks: { lint: "pass", types: "pass" },
+  };
+
+  const outCICD = {
+    pipeline: "ci.yml",
+    stages: ["lint", "typecheck", "test", "build"],
+    artifacts: ["coverage.xml", "build-output"],
+    policy: "fail-fast",
+  };
+
+  const outDeployOps = {
+    hosting: "Vercel",
+    preview: "enabled",
+    prod: "protected",
+    observability: ["logs", "traces (basic)", "alerts (manual)"],
+  };
+
+  const outCloud = {
+    aws: ["S3", "IAM", "EC2 (bases)", "CloudWatch (bases)"],
+    gcp: ["Cloud Run (exp.)", "Storage (bases)"],
+    principles: ["least privilege", "secrets not in repo", "cost awareness"],
+  };
+
+  const outML = {
+    pipeline: ["split", "preprocess", "train", "eval", "explain"],
+    metrics: ["accuracy", "f1", "rmse/mae"],
+    reproducibility: ["random_state", "tracking runs (simple)"],
+  };
+
+  const outCNN = {
+    approach: "transfer learning",
+    backbone: "VGG16 / MobileNet (selon contrainte)",
+    eval: ["learning curves", "confusion matrix", "F1"],
+    deployment: "export model + inference script",
+  };
+
+  const outRAG = {
+    ingestion: ["chunking", "metadata", "indexing"],
+    retrieval: ["top-k", "rerank (option)"],
+    answer: ["citations", "guardrails"],
+    monitoring: ["latency", "hallucination signals", "feedback loop"],
+  };
 
   return (
     <div className="min-h-screen bg-white text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100">
       <TopBar />
-        <main className="px-4 sm:px-6 pb-24">
-          {/* Cell: Hero markdown */}
-          <MarkdownCell>
-            <h2 id="projets" className="text-2xl md:text-3xl font-semibold">
-              Environnements
-            </h2>
 
-            <h3 className="mt-4 text-neutral-700 dark:text-neutral-300 max-w-2xl">
-              <b>
-                À l'aise dans les environnements Linux, Mac, Windows, Jupyter, VS Code... et prêt à m'adapter à de nouveaux environnements selon les besoins du projet.
-              </b>
-            </h3>
+      <main className="mx-auto max-w-6xl px-4 sm:px-6 pb-24">
+        {/* ===== Intro ===== */}
+        <MarkdownCell>
+          <h1 className="text-2xl md:text-3xl font-semibold flex items-center gap-2">
+            <BookOpen className="h-6 w-6" />
+            Compétences
+          </h1>
+        </MarkdownCell>
 
-            <div className="mt-4 flex flex-wrap gap-2">
-              {[
-                "Debian/Ubuntu",
-                "bash/zsh",
-                "MacOS",
-                "PowerShell",
-                "Jupyter Notebook",
-                "VS Code",
-              ].map((t, i) => (
-                <span
-                  key={i}
-                  className="text-xs px-2 py-1 rounded-lg border border-neutral-200 bg-neutral-50 text-neutral-800 dark:border-neutral-800/80 dark:bg-neutral-900/60 dark:text-neutral-200"
-                >
-                  {t}
-                </span>
-              ))}
-            </div>
-          </MarkdownCell>
+        {/* ===== 1) Versioning ===== */}
+        <MarkdownCell>
+          <h2 className="text-xl md:text-2xl font-semibold flex items-center gap-2">
+            <GitBranch className="h-5 w-5" />
+            Versioning & collaboration
+          </h2>
+          <h3 className="text-neutral-700 dark:text-neutral-300">
+            Travail en branches courtes, commits lisibles, PR propres, et discipline “reproductible” :
+            convention de nommage, changelog simple, et rollback possible.
+          </h3>
+          <Tags items={["Git", "GitHub", "Gitlab", "Gitea", "branches", "PR"]} />
+        </MarkdownCell>
 
-          {/* Cell: code to load libraries */}
-          <CodeCell
-            idx={1}
-            code={`import platform
-import sys
-import os
+        <CodeCell
+          idx={i++}
+          code={`# workflow minimal
+git checkout -b feat/xxx
+git add -A
+git commit -m "Feat: add docs theme"
+git push -u origin feat/xxx`}
+        >
+          <OutOneLine value={outGit} />
+        </CodeCell>
 
-env = {
-    "os": platform.system(),
-    "os_version": platform.release(),
-    "python": sys.version.split()[0],
-    "shell": os.environ.get("SHELL", "unknown"),
-    "notebook": True
+        {/* ===== 2) CI/CD ===== */}
+        <MarkdownCell>
+          <h2 className="text-xl md:text-2xl font-semibold flex items-center gap-2">
+            <Wrench className="h-5 w-5" />
+            CI/CD
+          </h2>
+          <p className="text-neutral-700 dark:text-neutral-300">
+            Objectif : éviter les surprises. Lint + typecheck + tests + build sur chaque PR, puis déploiement preview
+            automatique (et prod contrôlée).
+          </p>
+          <Tags items={["GitHub Actions", "lint", "typecheck", "tests", "preview deployments"]} />
+        </MarkdownCell>
+
+        <CodeCell
+          idx={i++}
+          code={`# pseudo pipeline (concept)
+stages = ["lint", "typecheck", "test", "build"]
+for s in stages:
+    run(s)`}
+        >
+          <OutOneLine value={outCICD} />
+        </CodeCell>
+
+        {/* ===== 3) Déploiement & Ops ===== */}
+        <MarkdownCell>
+          <h2 className="text-xl md:text-2xl font-semibold flex items-center gap-2">
+            <ShieldCheck className="h-5 w-5" />
+            Déploiement & exploitation
+          </h2>
+          <p className="text-neutral-700 dark:text-neutral-300">
+            Je sépare clairement : preview pour itérer, production stable, et une logique de diagnostic (logs, erreurs,
+            reproduction locale). Je fais attention aux redirections, robots, sitemap, et au “minimum viable SEO”.
+          </p>
+          <Tags items={["Vercel", "preview/prod", "logs", "routing", "robots/sitemap"]} />
+        </MarkdownCell>
+
+        <CodeCell
+          idx={i++}
+          code={`# déploiement: principe
+if pr_open:
+    deploy("preview")
+if merged_to_main:
+    deploy("production")`}
+        >
+          <OutOneLine value={outDeployOps} />
+        </CodeCell>
+
+        {/* ===== 4) Cloud ===== */}
+        <MarkdownCell>
+          <h2 className="text-xl md:text-2xl font-semibold flex items-center gap-2">
+            <Cloud className="h-5 w-5" />
+            Cloud
+          </h2>
+          <p className="text-neutral-700 dark:text-neutral-300">
+            Je sais intégrer du stockage, gérer des permissions (IAM) au plus juste, et raisonner coût/latence. J’aime les
+            architectures simples, observables, et faciles à auditer.
+          </p>
+          <Tags items={["AWS", "GCP", "IAM", "S3/Storage", "CloudWatch (bases)"]} />
+        </MarkdownCell>
+
+        <CodeCell
+          idx={i++}
+          code={`# exemple de checklist cloud (concept)
+cloud_ready = {
+  "storage": "ok",
+  "iam_least_privilege": True,
+  "secrets": "managed",
+  "logging": "enabled"
 }
+cloud_ready`}
+        >
+          <OutOneLine value={outCloud} />
+        </CodeCell>
 
-env`}
-          >
-            <div className="text-sm text-emerald-600 dark:text-emerald-400">
-              env ready
-            </div>
-          </CodeCell>
-                    <CodeCell
-            idx={1}
-            code={`{
-  "os": "Linux",
-  "os_version": "6.5.0",
-  "python": "3.11.6",
-  "shell": "/bin/zsh",
-  "notebook": true
-}
-`}
-          >
-          </CodeCell>
+        {/* ===== 5) ML ===== */}
+        <MarkdownCell>
+          <h2 className="text-xl md:text-2xl font-semibold flex items-center gap-2">
+            <Brain className="h-5 w-5" />
+            Machine Learning
+          </h2>
+          <p className="text-neutral-700 dark:text-neutral-300">
+            Pipeline clair : préparation → split → entraînement → métriques → explicabilité. Je privilégie des baselines
+            solides, et je rends les résultats “actionnables” (ce que ça améliore, ce que ça rate, pourquoi).
+          </p>
+          <Tags items={["pandas", "scikit-learn", "pipelines", "metrics", "explainability"]} />
+        </MarkdownCell>
 
-          {/* Cell: Projects */}
-          <MarkdownCell>
-            <h2 id="projets" className="text-2xl md:text-3xl font-semibold">
-              Projets récents
-            </h2>
-          </MarkdownCell>
+        <CodeCell
+          idx={i++}
+          code={`from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import OneHotEncoder
+from sklearn.compose import ColumnTransformer
 
-          <CodeCell idx={2} code={`# affichage_projets()\nprojects.head(3)`}>
-            <div className="grid md:grid-cols-3 gap-4">
-              {projects.map((p, i) => (
-                <Card
-                  key={i}
-                  className="rounded-2xl overflow-hidden border border-neutral-200 bg-white dark:bg-neutral-900/60 dark:border-neutral-800/80"
-                >
-                  <div className="h-28 bg-neutral-100 text-neutral-500 flex items-center justify-center text-sm dark:bg-neutral-800/60 dark:text-neutral-400">
-                    aperçu
-                  </div>
+# preprocess -> model -> eval (concept)
+pipeline = Pipeline(steps=[("prep", ...), ("model", ...)])
+pipeline`}
+        >
+          <OutOneLine value={outML} />
+        </CodeCell>
 
-                  <CardContent className="p-4">
-                    <div className="font-medium">{p.title}</div>
-                    <p className="text-neutral-700 dark:text-neutral-300 text-sm mt-1">
-                      {p.desc}
-                    </p>
+        {/* ===== 6) CNN / Vision ===== */}
+        <MarkdownCell>
+          <h2 className="text-xl md:text-2xl font-semibold flex items-center gap-2">
+            <Camera className="h-5 w-5" />
+            CNN / Vision par ordinateur
+          </h2>
+          <p className="text-neutral-700 dark:text-neutral-300">
+            Approche “propre” : transfert learning, data augmentation quand utile, suivi des courbes d’apprentissage, et
+            métriques adaptées (F1, confusion matrix). Je pense aussi à l’inférence (poids, latence, format).
+          </p>
+          <Tags items={["Transfer learning", "VGG16", "MobileNet", "data augmentation", "F1/Confusion matrix"]} />
+        </MarkdownCell>
 
-                    <div className="flex flex-wrap gap-2 mt-2">
-                      {p.tags.map((t, j) => (
-                        <span
-                          key={j}
-                          className="text-xs px-2 py-0.5 rounded-lg border border-neutral-200 text-neutral-800 dark:border-neutral-800/80 dark:text-neutral-200"
-                        >
-                          {t}
-                        </span>
-                      ))}
-                    </div>
+        <CodeCell
+          idx={i++}
+          code={`# concept: transfer learning
+backbone = "VGG16"
+trainable = False
+head = "Dense -> Softmax"
+model = f"{backbone} + {head}"
+model`}
+        >
+          <OutOneLine value={outCNN} />
+        </CodeCell>
 
-                    <div className="mt-3">
-                      <a
-                        className="text-sm underline hover:no-underline"
-                        href={p.link}
-                        target="_blank"
-                        rel="noreferrer"
-                      >
-                        Détails & code
-                      </a>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </CodeCell>
+        {/* ===== 7) RAG / LLM ===== */}
+        <MarkdownCell>
+          <h2 className="text-xl md:text-2xl font-semibold flex items-center gap-2">
+            <ShieldCheck className="h-5 w-5" />
+            RAG / LLM (IA générative)
+          </h2>
+          <p className="text-neutral-700 dark:text-neutral-300">
+            Je construis des réponses traçables : ingestion, retrieval, citations, et garde-fous. Je fais attention à la
+            qualité des sources, à la latence, et aux cas “sans réponse” (éviter d’inventer).
+          </p>
+          <Tags items={["chunking", "top-k", "citations", "guardrails", "monitoring"]} />
+        </MarkdownCell>
 
-          {/* Cell: Experience */}
-          <MarkdownCell>
-            <h2 id="experience" className="text-2xl md:text-3xl font-semibold">
-              Expérience
-            </h2>
-          </MarkdownCell>
+        <CodeCell
+          idx={i++}
+          code={`# RAG minimal (concept)
+question = "..."
+chunks = retrieve(question, top_k=5)
+answer = llm(question, context=chunks)
+{"answer": answer, "sources": [c.id for c in chunks]}`}
+        >
+          <OutOneLine value={outRAG} />
+        </CodeCell>
 
-          <CodeCell
-            idx={3}
-            code={`# to_table(experience)\nexperience.sort_values('période', ascending=False)`}
-          >
-            <div className="grid md:grid-cols-2 gap-4">
-              {[
-                {
-                  period: "2024 → 2025",
-                  role: "Apprenti Data Scientist",
-                  org: "OpenClassrooms (RNCP 7) × Isphers",
-                  details:
-                    "Nettoyage, features, dashboards, intégrations WordPress & data, monitoring.",
-                },
-                {
-                  period: "2016 → 2023",
-                  role: "Accessoiriste / Menuisier de décors",
-                  org: "Cinéma & publicité",
-                  details: "Construction & accessoirisation, coordination plateau.",
-                },
-              ].map((e, i) => (
-                <Card
-                  key={i}
-                  className="rounded-2xl border border-neutral-200 bg-white dark:bg-neutral-900/60 dark:border-neutral-800/80"
-                >
-                  <CardContent className="p-4">
-                    <div className="text-sm text-neutral-600 dark:text-neutral-400">
-                      {e.period}
-                    </div>
-                    <div className="mt-1 font-medium">{e.role}</div>
-                    <div className="text-neutral-700 dark:text-neutral-300">
-                      {e.org}
-                    </div>
-                    <p className="text-neutral-700 dark:text-neutral-300 text-sm mt-2">
-                      {e.details}
-                    </p>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </CodeCell>
-
-          {/* Cell: Contact */}
-          <MarkdownCell>
-            <h2 id="contact" className="text-2xl md:text-3xl font-semibold">
-              Contact
-            </h2>
-          </MarkdownCell>
-
-          <CodeCell idx={4} code={`# send_message(to='nicolas.destrac@gmail.com')`}>
-            <div className="flex flex-wrap gap-3">
-              <Button asChild className="rounded-xl">
-                <a href="mailto:nicolas.destrac@gmail.com">
-                  <Mail className="h-4 w-4 mr-2" />
-                  Email
-                </a>
-              </Button>
-              <Button asChild variant="secondary" className="rounded-xl">
-                <a
-                  href="https://www.linkedin.com/in/nicolasdestrac"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <Linkedin className="h-4 w-4 mr-2" />
-                  LinkedIn
-                </a>
-              </Button>
-              <Button asChild variant="secondary" className="rounded-xl">
-                <a
-                  href="https://github.com/nicolasdestrac"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <Github className="h-4 w-4 mr-2" />
-                  GitHub
-                </a>
-              </Button>
-            </div>
-          </CodeCell>
-        </main>
-      </div>
+        {/* Footer */}
+        <div className="mt-10 pt-6 border-t border-neutral-200 text-sm text-neutral-600 dark:border-neutral-800/80 dark:text-neutral-500">
+          © {new Date().getFullYear()}{" "}
+          <span className="font-gordita">nicolas</span>
+          <span className="font-shadow">destrac</span> · compétences notebook
+        </div>
+      </main>
+    </div>
   );
 }
