@@ -132,9 +132,9 @@ export default function NicolasNotebookPortfolio() {
   ];
 
   return (
-    <div className="min-h-screen bg-white text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100">
+    <div className="h-full bg-white text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100">
       <TopBar />
-        <main className="px-4 sm:px-6 pb-24">
+        <main className="px-4 sm:px-6">
           {/* Cell: Hero markdown */}
           <MarkdownCell>
             <h2 id="projets" className="text-2xl md:text-3xl font-semibold">
