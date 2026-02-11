@@ -177,7 +177,7 @@ export default function CompetencesPage() {
   };
 
   return (
-    <div className="h-full bg-white text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100">
+    <div className="min-w-0 h-full bg-white text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100">
       <TopBar />
 
       <main className="px-4 sm:px-6">
@@ -362,12 +362,6 @@ answer = llm(question, context=chunks)
           <OutOneLine value={outRAG} />
         </CodeCell>
 
-        {/* Footer */}
-        <div className="mt-10 pt-6 border-t border-neutral-200 text-sm text-neutral-600 dark:border-neutral-800/80 dark:text-neutral-500">
-          © {new Date().getFullYear()}{" "}
-          <span className="font-gordita">nicolas</span>
-          <span className="font-shadow">destrac</span> · compétences notebook
-        </div>
       </main>
     </div>
   );

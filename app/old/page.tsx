@@ -40,12 +40,12 @@ function TopBar() {
 
 export default function Old() {
   return (
-    <div className="h-full bg-white text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100">
+    <div className="min-w-0 h-full bg-white text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100">
       <TopBar />
         <iframe
           src="/legacy/index.html"
           title="Ancien site"
-          className="h-full w-full border-0"
+          className="min-w-0 h-full w-full border-0"
           style={{ height: "72vh" }}
         />
 
