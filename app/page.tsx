@@ -132,7 +132,7 @@ export default function NicolasNotebookPortfolio() {
   ];
 
   return (
-    <div className="h-full bg-white text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100">
+    <div className="min-w-0 h-full bg-white text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100">
       <TopBar />
         <main className="px-4 sm:px-6">
           {/* Cell: Hero markdown */}

@@ -22,7 +22,7 @@ const NAV = [
 
 export default function DocsLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="h-full bg-white text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100">
+    <div className="min-w-0 h-full bg-white text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100">
       {/* Header */}
       <header className="sticky top-0 z-40 border-b border-neutral-200 bg-white/80 backdrop-blur
                    dark:border-neutral-800 dark:bg-neutral-950/80">

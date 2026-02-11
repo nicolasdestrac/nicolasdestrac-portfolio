@@ -53,13 +53,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       className={`${cicleFina.variable} ${cicleGordita.variable} ${cicleShadow.variable}`}
       suppressHydrationWarning
     >
-      <body className="h-full overflow-hidden bg-white text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100">
+      <body className="min-w-0 h-full overflow-hidden bg-white text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100">
         <ThemeProvider>
           {/* HEADER FIXED */}
           <header
             className="fixed inset-x-0 top-0 z-50 h-20 border-b border-neutral-200 bg-white/80 backdrop-blur dark:border-neutral-800 dark:bg-neutral-950/80"
           >
-            <nav className="mx-auto max-w-8xl px-4 h-full flex items-center justify-between">
+            <nav className="mx-auto max-w-8xl px-4 min-w-0 h-full flex items-center justify-between">
               <a
                 href="/"
                 className="tracking-tight text-[44px] leading-none inline-flex items-baseline"
@@ -102,7 +102,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </aside>
 
             {/* MAIN = seule zone scrollable */}
-            <main className="min-w-0 h-full overflow-y-auto bg-white dark:bg-neutral-950">
+            <main className="min-w-0 min-w-0 h-full overflow-y-auto bg-white dark:bg-neutral-950">
               {children}
             </main>
           </div>
