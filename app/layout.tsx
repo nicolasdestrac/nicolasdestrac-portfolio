@@ -76,7 +76,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
           {/* APP SHELL sous le header */}
           <div
-            className="pt-20 grid grid-cols-1 lg:grid-cols-[16rem_1fr] min-h-0"
+            className="mt-20 min-h-0 grid grid-cols-1 lg:grid-cols-[16rem_1fr]"
             style={{ height: `calc(100dvh - ${HEADER_H_PX}px)` }}
           >
             {/* SIDEBAR FIXE (non scrollable) */}
