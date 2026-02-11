@@ -177,10 +177,10 @@ export default function CompetencesPage() {
   };
 
   return (
-    <div className="min-h-screen bg-white text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100">
+    <div className="h-full bg-white text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100">
       <TopBar />
 
-      <main className="mx-auto max-w-6xl px-4 sm:px-6 pb-24">
+      <main className="px-4 sm:px-6">
         {/* ===== Intro ===== */}
         <MarkdownCell>
           <h1 className="text-2xl md:text-3xl font-semibold flex items-center gap-2">
