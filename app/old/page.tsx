@@ -13,7 +13,7 @@ function TopBar() {
 
         <div className="hidden md:flex items-center">
           <p className="text-base font-semibold">
-            Ancien site pour mon activité d&apos;accessoiriste de décor (HTML/CSS, 2013).
+            Ancien site pour mon activité d&apos;accessoiriste de décor codé sur bloc-note(HTML/CSS, 2013).
           </p>
         </div>
 
