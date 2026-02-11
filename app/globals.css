@@ -39,3 +39,11 @@
 .prose a:hover {
   border-bottom-style: solid;
 }
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+}

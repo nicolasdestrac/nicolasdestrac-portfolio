@@ -177,105 +177,106 @@ export default function CompetencesPage() {
   };
 
   return (
-    <div className="h-full bg-white text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100">
+    <div className="min-w-0 h-full bg-white text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100">
       <TopBar />
 
-      <main className="px-4 sm:px-6">
-        {/* ===== Intro ===== */}
-        <MarkdownCell>
-          <h1 className="text-2xl md:text-3xl font-semibold flex items-center gap-2">
-            <BookOpen className="h-6 w-6" />
-            Compétences
-          </h1>
-        </MarkdownCell>
+      <main className="min-w-0">
+        <div className="px-4 sm:px-6 py-6 pb-28">
+          {/* ===== Intro ===== */}
+          <MarkdownCell>
+            <h1 className="text-2xl md:text-3xl font-semibold flex items-center gap-2">
+              <BookOpen className="h-6 w-6" />
+              Compétences
+            </h1>
+          </MarkdownCell>
 
-        {/* ===== 1) Versioning ===== */}
-        <MarkdownCell>
-          <h2 className="text-xl md:text-2xl font-semibold flex items-center gap-2">
-            <GitBranch className="h-5 w-5" />
-            Versioning & collaboration
-          </h2>
-          <h3 className="text-neutral-700 dark:text-neutral-300">
-            Travail en branches courtes, commits lisibles, PR propres, et discipline “reproductible” :
-            convention de nommage, changelog simple, et rollback possible.
-          </h3>
-          <Tags items={["Git", "GitHub", "Gitlab", "Gitea", "branches", "PR"]} />
-        </MarkdownCell>
+          {/* ===== 1) Versioning ===== */}
+          <MarkdownCell>
+            <h2 className="text-xl md:text-2xl font-semibold flex items-center gap-2">
+              <GitBranch className="h-5 w-5" />
+              Versioning & collaboration
+            </h2>
+            <h3 className="text-neutral-700 dark:text-neutral-300">
+              Travail en branches courtes, commits lisibles, PR propres, et discipline “reproductible” :
+              convention de nommage, changelog simple, et rollback possible.
+            </h3>
+            <Tags items={["Git", "GitHub", "Gitlab", "Gitea", "branches", "PR"]} />
+          </MarkdownCell>
 
-        <CodeCell
-          idx={i++}
-          code={`# workflow minimal
+          <CodeCell
+            idx={i++}
+            code={`# workflow minimal
 git checkout -b feat/xxx
 git add -A
 git commit -m "Feat: add docs theme"
 git push -u origin feat/xxx`}
-        >
-          <OutOneLine value={outGit} />
-        </CodeCell>
+          >
+            <OutOneLine value={outGit} />
+          </CodeCell>
 
-        {/* ===== 2) CI/CD ===== */}
-        <MarkdownCell>
-          <h2 className="text-xl md:text-2xl font-semibold flex items-center gap-2">
-            <Wrench className="h-5 w-5" />
-            CI/CD
-          </h2>
-          <p className="text-neutral-700 dark:text-neutral-300">
-            Objectif : éviter les surprises. Lint + typecheck + tests + build sur chaque PR, puis déploiement preview
-            automatique (et prod contrôlée).
-          </p>
-          <Tags items={["GitHub Actions", "lint", "typecheck", "tests", "preview deployments"]} />
-        </MarkdownCell>
+          {/* ===== 2) CI/CD ===== */}
+          <MarkdownCell>
+            <h2 className="text-xl md:text-2xl font-semibold flex items-center gap-2">
+              <Wrench className="h-5 w-5" />
+              CI/CD
+            </h2>
+            <p className="text-neutral-700 dark:text-neutral-300">
+              Objectif : éviter les surprises. Lint + typecheck + tests + build sur chaque PR, puis déploiement preview
+              automatique (et prod contrôlée).
+            </p>
+            <Tags items={["GitHub Actions", "lint", "typecheck", "tests", "preview deployments"]} />
+          </MarkdownCell>
 
-        <CodeCell
-          idx={i++}
-          code={`# pseudo pipeline (concept)
+          <CodeCell
+            idx={i++}
+            code={`# pseudo pipeline (concept)
 stages = ["lint", "typecheck", "test", "build"]
 for s in stages:
     run(s)`}
-        >
-          <OutOneLine value={outCICD} />
-        </CodeCell>
+          >
+            <OutOneLine value={outCICD} />
+          </CodeCell>
 
-        {/* ===== 3) Déploiement & Ops ===== */}
-        <MarkdownCell>
-          <h2 className="text-xl md:text-2xl font-semibold flex items-center gap-2">
-            <ShieldCheck className="h-5 w-5" />
-            Déploiement & exploitation
-          </h2>
-          <p className="text-neutral-700 dark:text-neutral-300">
-            Je sépare clairement : preview pour itérer, production stable, et une logique de diagnostic (logs, erreurs,
-            reproduction locale). Je fais attention aux redirections, robots, sitemap, et au “minimum viable SEO”.
-          </p>
-          <Tags items={["Vercel", "preview/prod", "logs", "routing", "robots/sitemap"]} />
-        </MarkdownCell>
+          {/* ===== 3) Déploiement & Ops ===== */}
+          <MarkdownCell>
+            <h2 className="text-xl md:text-2xl font-semibold flex items-center gap-2">
+              <ShieldCheck className="h-5 w-5" />
+              Déploiement & exploitation
+            </h2>
+            <p className="text-neutral-700 dark:text-neutral-300">
+              Je sépare clairement : preview pour itérer, production stable, et une logique de diagnostic (logs, erreurs,
+              reproduction locale). Je fais attention aux redirections, robots, sitemap, et au “minimum viable SEO”.
+            </p>
+            <Tags items={["Vercel", "preview/prod", "logs", "routing", "robots/sitemap"]} />
+          </MarkdownCell>
 
-        <CodeCell
-          idx={i++}
-          code={`# déploiement: principe
+          <CodeCell
+            idx={i++}
+            code={`# déploiement: principe
 if pr_open:
     deploy("preview")
 if merged_to_main:
     deploy("production")`}
-        >
-          <OutOneLine value={outDeployOps} />
-        </CodeCell>
+          >
+            <OutOneLine value={outDeployOps} />
+          </CodeCell>
 
-        {/* ===== 4) Cloud ===== */}
-        <MarkdownCell>
-          <h2 className="text-xl md:text-2xl font-semibold flex items-center gap-2">
-            <Cloud className="h-5 w-5" />
-            Cloud
-          </h2>
-          <p className="text-neutral-700 dark:text-neutral-300">
-            Je sais intégrer du stockage, gérer des permissions (IAM) au plus juste, et raisonner coût/latence. J’aime les
-            architectures simples, observables, et faciles à auditer.
-          </p>
-          <Tags items={["AWS", "GCP", "IAM", "S3/Storage", "CloudWatch (bases)"]} />
-        </MarkdownCell>
+          {/* ===== 4) Cloud ===== */}
+          <MarkdownCell>
+            <h2 className="text-xl md:text-2xl font-semibold flex items-center gap-2">
+              <Cloud className="h-5 w-5" />
+              Cloud
+            </h2>
+            <p className="text-neutral-700 dark:text-neutral-300">
+              Je sais intégrer du stockage, gérer des permissions (IAM) au plus juste, et raisonner coût/latence. J’aime les
+              architectures simples, observables, et faciles à auditer.
+            </p>
+            <Tags items={["AWS", "GCP", "IAM", "S3/Storage", "CloudWatch (bases)"]} />
+          </MarkdownCell>
 
-        <CodeCell
-          idx={i++}
-          code={`# exemple de checklist cloud (concept)
+          <CodeCell
+            idx={i++}
+            code={`# exemple de checklist cloud (concept)
 cloud_ready = {
   "storage": "ok",
   "iam_least_privilege": True,
@@ -283,90 +284,84 @@ cloud_ready = {
   "logging": "enabled"
 }
 cloud_ready`}
-        >
-          <OutOneLine value={outCloud} />
-        </CodeCell>
+          >
+            <OutOneLine value={outCloud} />
+          </CodeCell>
 
-        {/* ===== 5) ML ===== */}
-        <MarkdownCell>
-          <h2 className="text-xl md:text-2xl font-semibold flex items-center gap-2">
-            <Brain className="h-5 w-5" />
-            Machine Learning
-          </h2>
-          <p className="text-neutral-700 dark:text-neutral-300">
-            Pipeline clair : préparation → split → entraînement → métriques → explicabilité. Je privilégie des baselines
-            solides, et je rends les résultats “actionnables” (ce que ça améliore, ce que ça rate, pourquoi).
-          </p>
-          <Tags items={["pandas", "scikit-learn", "pipelines", "metrics", "explainability"]} />
-        </MarkdownCell>
+          {/* ===== 5) ML ===== */}
+          <MarkdownCell>
+            <h2 className="text-xl md:text-2xl font-semibold flex items-center gap-2">
+              <Brain className="h-5 w-5" />
+              Machine Learning
+            </h2>
+            <p className="text-neutral-700 dark:text-neutral-300">
+              Pipeline clair : préparation → split → entraînement → métriques → explicabilité. Je privilégie des baselines
+              solides, et je rends les résultats “actionnables” (ce que ça améliore, ce que ça rate, pourquoi).
+            </p>
+            <Tags items={["pandas", "scikit-learn", "pipelines", "metrics", "explainability"]} />
+          </MarkdownCell>
 
-        <CodeCell
-          idx={i++}
-          code={`from sklearn.pipeline import Pipeline
+          <CodeCell
+            idx={i++}
+            code={`from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.compose import ColumnTransformer
 
 # preprocess -> model -> eval (concept)
 pipeline = Pipeline(steps=[("prep", ...), ("model", ...)])
 pipeline`}
-        >
-          <OutOneLine value={outML} />
-        </CodeCell>
+          >
+            <OutOneLine value={outML} />
+          </CodeCell>
 
-        {/* ===== 6) CNN / Vision ===== */}
-        <MarkdownCell>
-          <h2 className="text-xl md:text-2xl font-semibold flex items-center gap-2">
-            <Camera className="h-5 w-5" />
-            CNN / Vision par ordinateur
-          </h2>
-          <p className="text-neutral-700 dark:text-neutral-300">
-            Approche “propre” : transfert learning, data augmentation quand utile, suivi des courbes d’apprentissage, et
-            métriques adaptées (F1, confusion matrix). Je pense aussi à l’inférence (poids, latence, format).
-          </p>
-          <Tags items={["Transfer learning", "VGG16", "MobileNet", "data augmentation", "F1/Confusion matrix"]} />
-        </MarkdownCell>
+          {/* ===== 6) CNN / Vision ===== */}
+          <MarkdownCell>
+            <h2 className="text-xl md:text-2xl font-semibold flex items-center gap-2">
+              <Camera className="h-5 w-5" />
+              CNN / Vision par ordinateur
+            </h2>
+            <p className="text-neutral-700 dark:text-neutral-300">
+              Approche “propre” : transfert learning, data augmentation quand utile, suivi des courbes d’apprentissage, et
+              métriques adaptées (F1, confusion matrix). Je pense aussi à l’inférence (poids, latence, format).
+            </p>
+            <Tags items={["Transfer learning", "VGG16", "MobileNet", "data augmentation", "F1/Confusion matrix"]} />
+          </MarkdownCell>
 
-        <CodeCell
-          idx={i++}
-          code={`# concept: transfer learning
+          <CodeCell
+            idx={i++}
+            code={`# concept: transfer learning
 backbone = "VGG16"
 trainable = False
 head = "Dense -> Softmax"
 model = f"{backbone} + {head}"
 model`}
-        >
-          <OutOneLine value={outCNN} />
-        </CodeCell>
+          >
+            <OutOneLine value={outCNN} />
+          </CodeCell>
 
-        {/* ===== 7) RAG / LLM ===== */}
-        <MarkdownCell>
-          <h2 className="text-xl md:text-2xl font-semibold flex items-center gap-2">
-            <ShieldCheck className="h-5 w-5" />
-            RAG / LLM (IA générative)
-          </h2>
-          <p className="text-neutral-700 dark:text-neutral-300">
-            Je construis des réponses traçables : ingestion, retrieval, citations, et garde-fous. Je fais attention à la
-            qualité des sources, à la latence, et aux cas “sans réponse” (éviter d’inventer).
-          </p>
-          <Tags items={["chunking", "top-k", "citations", "guardrails", "monitoring"]} />
-        </MarkdownCell>
+          {/* ===== 7) RAG / LLM ===== */}
+          <MarkdownCell>
+            <h2 className="text-xl md:text-2xl font-semibold flex items-center gap-2">
+              <ShieldCheck className="h-5 w-5" />
+              RAG / LLM (IA générative)
+            </h2>
+            <p className="text-neutral-700 dark:text-neutral-300">
+              Je construis des réponses traçables : ingestion, retrieval, citations, et garde-fous. Je fais attention à la
+              qualité des sources, à la latence, et aux cas “sans réponse” (éviter d’inventer).
+            </p>
+            <Tags items={["chunking", "top-k", "citations", "guardrails", "monitoring"]} />
+          </MarkdownCell>
 
-        <CodeCell
-          idx={i++}
-          code={`# RAG minimal (concept)
+          <CodeCell
+            idx={i++}
+            code={`# RAG minimal (concept)
 question = "..."
 chunks = retrieve(question, top_k=5)
 answer = llm(question, context=chunks)
 {"answer": answer, "sources": [c.id for c in chunks]}`}
-        >
-          <OutOneLine value={outRAG} />
-        </CodeCell>
-
-        {/* Footer */}
-        <div className="mt-10 pt-6 border-t border-neutral-200 text-sm text-neutral-600 dark:border-neutral-800/80 dark:text-neutral-500">
-          © {new Date().getFullYear()}{" "}
-          <span className="font-gordita">nicolas</span>
-          <span className="font-shadow">destrac</span> · compétences notebook
+          >
+            <OutOneLine value={outRAG} />
+          </CodeCell>
         </div>
       </main>
     </div>

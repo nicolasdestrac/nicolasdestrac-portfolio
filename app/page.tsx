@@ -132,196 +132,198 @@ export default function NicolasNotebookPortfolio() {
   ];
 
   return (
-    <div className="h-full bg-white text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100">
+    <div className="min-w-0 h-full bg-white text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100">
       <TopBar />
-        <main className="px-4 sm:px-6">
-          {/* Cell: Hero markdown */}
-          <MarkdownCell>
-            <h2 id="projets" className="text-2xl md:text-3xl font-semibold">
-              Data Scientist
-            </h2>
+        <main className="min-w-0">
+          <div className="px-4 sm:px-6 py-6 pb-28">
+            {/* Cell: Hero markdown */}
+            <MarkdownCell>
+              <h2 id="projets" className="text-2xl md:text-3xl font-semibold">
+                Data Scientist
+              </h2>
 
-            <h3 className="mt-4 text-neutral-700 dark:text-neutral-300 max-w-2xl">
-              <b>
-                Data scientist – LLM appliqués, vision par ordinateur, et pipelines ML explicables.
-              </b>
-              <br />
-              Parcours initial de 15 ans en production audiovisuelle (cinéma, publicité).
-            </h3>
+              <h3 className="mt-4 text-neutral-700 dark:text-neutral-300 max-w-2xl">
+                <b>
+                  Data scientist – LLM appliqués, vision par ordinateur, et pipelines ML explicables.
+                </b>
+                <br />
+                Parcours initial de 15 ans en production audiovisuelle (cinéma, publicité).
+              </h3>
 
-            <div className="mt-4 flex flex-wrap gap-2">
-              {[
-                "Python",
-                "NumPy",
-                "Pandas",
-                "Scikit-learn",
-                "TensorFlow/Keras",
-                "SQL",
-                "Git",
-                "Docker",
-                "PyTorch",
-                "AWS",
-              ].map((t, i) => (
-                <span
-                  key={i}
-                  className="text-xs px-2 py-1 rounded-lg border border-neutral-200 bg-neutral-50 text-neutral-800 dark:border-neutral-800/80 dark:bg-neutral-900/60 dark:text-neutral-200"
-                >
-                  {t}
-                </span>
-              ))}
-            </div>
-          </MarkdownCell>
+              <div className="mt-4 flex flex-wrap gap-2">
+                {[
+                  "Python",
+                  "NumPy",
+                  "Pandas",
+                  "Scikit-learn",
+                  "TensorFlow/Keras",
+                  "SQL",
+                  "Git",
+                  "Docker",
+                  "PyTorch",
+                  "AWS",
+                ].map((t, i) => (
+                  <span
+                    key={i}
+                    className="text-xs px-2 py-1 rounded-lg border border-neutral-200 bg-neutral-50 text-neutral-800 dark:border-neutral-800/80 dark:bg-neutral-900/60 dark:text-neutral-200"
+                  >
+                    {t}
+                  </span>
+                ))}
+              </div>
+            </MarkdownCell>
 
-          {/* Cell: code to load libraries */}
-          <CodeCell
-            idx={1}
-            code={`import numpy as np
+            {/* Cell: code to load libraries */}
+            <CodeCell
+              idx={1}
+              code={`import numpy as np
 import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
 print('env ready')`}
-          >
-            <div className="text-sm text-emerald-600 dark:text-emerald-400">
-              env ready
-            </div>
-          </CodeCell>
+            >
+              <div className="text-sm text-emerald-600 dark:text-emerald-400">
+                env ready
+              </div>
+            </CodeCell>
 
-          {/* Cell: Projects */}
-          <MarkdownCell>
-            <h2 id="projets" className="text-2xl md:text-3xl font-semibold">
-              Projets récents
-            </h2>
-          </MarkdownCell>
+            {/* Cell: Projects */}
+            <MarkdownCell>
+              <h2 id="projets" className="text-2xl md:text-3xl font-semibold">
+                Projets récents
+              </h2>
+            </MarkdownCell>
 
-          <CodeCell idx={2} code={`# affichage_projets()\nprojects.head(3)`}>
-            <div className="grid md:grid-cols-3 gap-4">
-              {projects.map((p, i) => (
-                <Card
-                  key={i}
-                  className="rounded-2xl overflow-hidden border border-neutral-200 bg-white dark:bg-neutral-900/60 dark:border-neutral-800/80"
-                >
-                  <div className="h-28 bg-neutral-100 text-neutral-500 flex items-center justify-center text-sm dark:bg-neutral-800/60 dark:text-neutral-400">
-                    aperçu
-                  </div>
+            <CodeCell idx={2} code={`# affichage_projets()\nprojects.head(3)`}>
+              <div className="grid md:grid-cols-3 gap-4">
+                {projects.map((p, i) => (
+                  <Card
+                    key={i}
+                    className="rounded-2xl overflow-hidden border border-neutral-200 bg-white dark:bg-neutral-900/60 dark:border-neutral-800/80"
+                  >
+                    <div className="h-28 bg-neutral-100 text-neutral-500 flex items-center justify-center text-sm dark:bg-neutral-800/60 dark:text-neutral-400">
+                      aperçu
+                    </div>
 
-                  <CardContent className="p-4">
-                    <div className="font-medium">{p.title}</div>
-                    <p className="text-neutral-700 dark:text-neutral-300 text-sm mt-1">
-                      {p.desc}
-                    </p>
+                    <CardContent className="p-4">
+                      <div className="font-medium">{p.title}</div>
+                      <p className="text-neutral-700 dark:text-neutral-300 text-sm mt-1">
+                        {p.desc}
+                      </p>
 
-                    <div className="flex flex-wrap gap-2 mt-2">
-                      {p.tags.map((t, j) => (
-                        <span
-                          key={j}
-                          className="text-xs px-2 py-0.5 rounded-lg border border-neutral-200 text-neutral-800 dark:border-neutral-800/80 dark:text-neutral-200"
+                      <div className="flex flex-wrap gap-2 mt-2">
+                        {p.tags.map((t, j) => (
+                          <span
+                            key={j}
+                            className="text-xs px-2 py-0.5 rounded-lg border border-neutral-200 text-neutral-800 dark:border-neutral-800/80 dark:text-neutral-200"
+                          >
+                            {t}
+                          </span>
+                        ))}
+                      </div>
+
+                      <div className="mt-3">
+                        <a
+                          className="text-sm underline hover:no-underline"
+                          href={p.link}
+                          target="_blank"
+                          rel="noreferrer"
                         >
-                          {t}
-                        </span>
-                      ))}
-                    </div>
+                          Détails & code
+                        </a>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </CodeCell>
 
-                    <div className="mt-3">
-                      <a
-                        className="text-sm underline hover:no-underline"
-                        href={p.link}
-                        target="_blank"
-                        rel="noreferrer"
-                      >
-                        Détails & code
-                      </a>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </CodeCell>
+            {/* Cell: Experience */}
+            <MarkdownCell>
+              <h2 id="experience" className="text-2xl md:text-3xl font-semibold">
+                Expérience
+              </h2>
+            </MarkdownCell>
 
-          {/* Cell: Experience */}
-          <MarkdownCell>
-            <h2 id="experience" className="text-2xl md:text-3xl font-semibold">
-              Expérience
-            </h2>
-          </MarkdownCell>
+            <CodeCell
+              idx={3}
+              code={`# to_table(experience)\nexperience.sort_values('période', ascending=False)`}
+            >
+              <div className="grid md:grid-cols-2 gap-4">
+                {[
+                  {
+                    period: "2024 → 2025",
+                    role: "Apprenti Data Scientist",
+                    org: "OpenClassrooms (RNCP 7) × Isphers",
+                    details:
+                      "Nettoyage, features, dashboards, intégrations WordPress & data, monitoring.",
+                  },
+                  {
+                    period: "2016 → 2023",
+                    role: "Accessoiriste / Menuisier de décors",
+                    org: "Cinéma & publicité",
+                    details: "Construction & accessoirisation, coordination plateau.",
+                  },
+                ].map((e, i) => (
+                  <Card
+                    key={i}
+                    className="rounded-2xl border border-neutral-200 bg-white dark:bg-neutral-900/60 dark:border-neutral-800/80"
+                  >
+                    <CardContent className="p-4">
+                      <div className="text-sm text-neutral-600 dark:text-neutral-400">
+                        {e.period}
+                      </div>
+                      <div className="mt-1 font-medium">{e.role}</div>
+                      <div className="text-neutral-700 dark:text-neutral-300">
+                        {e.org}
+                      </div>
+                      <p className="text-neutral-700 dark:text-neutral-300 text-sm mt-2">
+                        {e.details}
+                      </p>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </CodeCell>
 
-          <CodeCell
-            idx={3}
-            code={`# to_table(experience)\nexperience.sort_values('période', ascending=False)`}
-          >
-            <div className="grid md:grid-cols-2 gap-4">
-              {[
-                {
-                  period: "2024 → 2025",
-                  role: "Apprenti Data Scientist",
-                  org: "OpenClassrooms (RNCP 7) × Isphers",
-                  details:
-                    "Nettoyage, features, dashboards, intégrations WordPress & data, monitoring.",
-                },
-                {
-                  period: "2016 → 2023",
-                  role: "Accessoiriste / Menuisier de décors",
-                  org: "Cinéma & publicité",
-                  details: "Construction & accessoirisation, coordination plateau.",
-                },
-              ].map((e, i) => (
-                <Card
-                  key={i}
-                  className="rounded-2xl border border-neutral-200 bg-white dark:bg-neutral-900/60 dark:border-neutral-800/80"
-                >
-                  <CardContent className="p-4">
-                    <div className="text-sm text-neutral-600 dark:text-neutral-400">
-                      {e.period}
-                    </div>
-                    <div className="mt-1 font-medium">{e.role}</div>
-                    <div className="text-neutral-700 dark:text-neutral-300">
-                      {e.org}
-                    </div>
-                    <p className="text-neutral-700 dark:text-neutral-300 text-sm mt-2">
-                      {e.details}
-                    </p>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </CodeCell>
+            {/* Cell: Contact */}
+            <MarkdownCell>
+              <h2 id="contact" className="text-2xl md:text-3xl font-semibold">
+                Contact
+              </h2>
+            </MarkdownCell>
 
-          {/* Cell: Contact */}
-          <MarkdownCell>
-            <h2 id="contact" className="text-2xl md:text-3xl font-semibold">
-              Contact
-            </h2>
-          </MarkdownCell>
-
-          <CodeCell idx={4} code={`# send_message(to='nicolas.destrac@gmail.com')`}>
-            <div className="flex flex-wrap gap-3">
-              <Button asChild className="rounded-xl">
-                <a href="mailto:nicolas.destrac@gmail.com">
-                  <Mail className="h-4 w-4 mr-2" />
-                  Email
-                </a>
-              </Button>
-              <Button asChild variant="secondary" className="rounded-xl">
-                <a
-                  href="https://www.linkedin.com/in/nicolasdestrac"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <Linkedin className="h-4 w-4 mr-2" />
-                  LinkedIn
-                </a>
-              </Button>
-              <Button asChild variant="secondary" className="rounded-xl">
-                <a
-                  href="https://github.com/nicolasdestrac"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <Github className="h-4 w-4 mr-2" />
-                  GitHub
-                </a>
-              </Button>
-            </div>
-          </CodeCell>
+            <CodeCell idx={4} code={`# send_message(to='nicolas.destrac@gmail.com')`}>
+              <div className="flex flex-wrap gap-3">
+                <Button asChild className="rounded-xl">
+                  <a href="mailto:nicolas.destrac@gmail.com">
+                    <Mail className="h-4 w-4 mr-2" />
+                    Email
+                  </a>
+                </Button>
+                <Button asChild variant="secondary" className="rounded-xl">
+                  <a
+                    href="https://www.linkedin.com/in/nicolasdestrac"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <Linkedin className="h-4 w-4 mr-2" />
+                    LinkedIn
+                  </a>
+                </Button>
+                <Button asChild variant="secondary" className="rounded-xl">
+                  <a
+                    href="https://github.com/nicolasdestrac"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <Github className="h-4 w-4 mr-2" />
+                    GitHub
+                  </a>
+                </Button>
+              </div>
+            </CodeCell>
+          </div>
         </main>
       </div>
   );
