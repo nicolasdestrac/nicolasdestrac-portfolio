@@ -47,3 +47,25 @@ html, body {
 body {
   margin: 0;
 }
+
+/* Shiki: éviter un style “imposé” et garder les paddings/bordures */
+.shiki-wrap pre.shiki {
+  background: transparent !important;
+  margin: 0;
+  padding: 0;
+}
+
+/* Shiki: switch light/dark avec la classe .dark */
+.shiki {
+  background-color: var(--shiki-light-bg) !important;
+  color: var(--shiki-light) !important;
+}
+
+.dark .shiki {
+  background-color: var(--shiki-dark-bg) !important;
+  color: var(--shiki-dark) !important;
+}
+
+.dark .shiki span {
+  color: var(--shiki-dark) !important;
+}
