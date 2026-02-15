@@ -15,6 +15,7 @@ import {
   Camera,
   BookOpen,
 } from "lucide-react";
+import { HighlightedCode } from "@/components/HighlightedCode";
 
 function TopBar() {
   return (
@@ -74,10 +75,12 @@ function MarkdownCell({ children }: { children: React.ReactNode }) {
 function CodeCell({
   idx,
   code,
+  lang = "txt",
   children,
 }: {
   idx: number;
   code: string;
+  lang?: string;
   children?: React.ReactNode;
 }) {
   return (
@@ -85,9 +88,9 @@ function CodeCell({
       <div className="flex items-start gap-4">
         <CellLabel idx={idx} type="code" />
         <div className="relative w-full">
-          <pre className="rounded-2xl border border-neutral-200 bg-white p-4 overflow-x-auto text-sm text-neutral-800 dark:border-neutral-800/80 dark:bg-neutral-950 dark:text-neutral-200">
-            <code>{code}</code>
-          </pre>
+          <div className="rounded-2xl">
+            <HighlightedCode code={code} lang={lang} />
+          </div>
         </div>
       </div>
 
@@ -205,6 +208,7 @@ export default function CompetencesPage() {
 
           <CodeCell
             idx={i++}
+            lang="bash"
             code={`# workflow minimal
 git checkout -b feat/xxx
 git add -A
@@ -229,6 +233,7 @@ git push -u origin feat/xxx`}
 
           <CodeCell
             idx={i++}
+            lang="python"
             code={`# pseudo pipeline (concept)
 stages = ["lint", "typecheck", "test", "build"]
 for s in stages:
@@ -252,6 +257,7 @@ for s in stages:
 
           <CodeCell
             idx={i++}
+            lang='python'
             code={`# déploiement: principe
 if pr_open:
     deploy("preview")
@@ -276,6 +282,7 @@ if merged_to_main:
 
           <CodeCell
             idx={i++}
+            lang="python"
             code={`# exemple de checklist cloud (concept)
 cloud_ready = {
   "storage": "ok",
@@ -303,6 +310,7 @@ cloud_ready`}
 
           <CodeCell
             idx={i++}
+            lang="python"
             code={`from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder
 from sklearn.compose import ColumnTransformer
@@ -329,6 +337,7 @@ pipeline`}
 
           <CodeCell
             idx={i++}
+            lang="python"
             code={`# concept: transfer learning
 backbone = "VGG16"
 trainable = False
@@ -354,6 +363,7 @@ model`}
 
           <CodeCell
             idx={i++}
+            lang="python"
             code={`# RAG minimal (concept)
 question = "..."
 chunks = retrieve(question, top_k=5)
