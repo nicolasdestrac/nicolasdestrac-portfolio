@@ -11,6 +11,7 @@ import {
   ChevronDown,
   Database,
 } from "lucide-react";
+import { HighlightedCode } from "@/components/HighlightedCode";
 
 // ===
 // Nicolas Destrac – Notebook style portfolio (v1)
@@ -82,10 +83,12 @@ function MarkdownCell({ children }: { children: React.ReactNode }) {
 function CodeCell({
   idx,
   code,
+  lang = "txt",
   children,
 }: {
   idx: number;
   code: string;
+  lang?: string;
   children?: React.ReactNode;
 }) {
   return (
@@ -93,9 +96,9 @@ function CodeCell({
       <div className="flex items-start gap-4">
         <CellLabel idx={idx} type="code" />
         <div className="relative w-full">
-          <pre className="rounded-2xl border border-neutral-200 bg-white p-4 overflow-x-auto text-sm text-neutral-800 dark:border-neutral-800/80 dark:bg-neutral-950 dark:text-neutral-200">
-            <code>{code}</code>
-          </pre>
+          <div className="rounded-2xl">
+            <HighlightedCode code={code} lang={lang} />
+          </div>
         </div>
       </div>
 
@@ -176,6 +179,7 @@ export default function NicolasNotebookPortfolio() {
             {/* Cell: code to load libraries */}
             <CodeCell
               idx={1}
+              lang="python"
               code={`import numpy as np
 import pandas as pd
 from sklearn.model_selection import train_test_split
@@ -194,7 +198,10 @@ print('env ready')`}
               </h2>
             </MarkdownCell>
 
-            <CodeCell idx={2} code={`# affichage_projets()\nprojects.head(3)`}>
+            <CodeCell
+              idx={2}
+              lang="python"
+              code={`# affichage_projets()\nprojects.head(3)`}>
               <div className="grid md:grid-cols-3 gap-4">
                 {projects.map((p, i) => (
                   <Card
@@ -247,6 +254,7 @@ print('env ready')`}
 
             <CodeCell
               idx={3}
+              lang='python'
               code={`# to_table(experience)\nexperience.sort_values('période', ascending=False)`}
             >
               <div className="grid md:grid-cols-2 gap-4">
@@ -293,7 +301,7 @@ print('env ready')`}
               </h2>
             </MarkdownCell>
 
-            <CodeCell idx={4} code={`# send_message(to='nicolas.destrac@gmail.com')`}>
+            <CodeCell idx={4} lang='python' code={`# send_message(to='nicolas.destrac@gmail.com')`}>
               <div className="flex flex-wrap gap-3">
                 <Button asChild className="rounded-xl">
                   <a href="mailto:nicolas.destrac@gmail.com">
