@@ -113,27 +113,6 @@ function CodeCell({
 }
 
 export default function NicolasNotebookPortfolio() {
-  const projects = [
-    {
-      title: "Classification d'images e-commerce",
-      desc: "Transfer learning (VGG16), data augmentation, réduction de dimension, comparaison par ARI.",
-      tags: ["CNN", "VGG16", "KMeans", "t-SNE"],
-      link: "/projets",
-    },
-    {
-      title: "Prévision conso & CO₂ bâtiments",
-      desc: "Régression sur features structurelles, nettoyage, outliers, métriques explicites.",
-      tags: ["pandas", "scikit-learn", "régression"],
-      link: "/projets",
-    },
-    {
-      title: "Intranet WordPress – KPI",
-      desc: "Refactor, tables SQL, monitoring Uptime Kuma, intégrations Teams/Email.",
-      tags: ["WordPress", "SQL", "Monitoring"],
-      link: "/projets",
-    },
-  ];
-
   return (
     <div className="min-w-0 h-full bg-white text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100">
       <TopBar />
@@ -191,60 +170,6 @@ print('env ready')`}
               </div>
             </CodeCell>
 
-            {/* Cell: Projects */}
-            <MarkdownCell>
-              <h2 id="projets" className="text-2xl md:text-3xl font-semibold">
-                Projets récents
-              </h2>
-            </MarkdownCell>
-
-            <CodeCell
-              idx={2}
-              lang="python"
-              code={`# affichage_projets()\nprojects.head(3)`}>
-              <div className="grid md:grid-cols-3 gap-4">
-                {projects.map((p, i) => (
-                  <Card
-                    key={i}
-                    className="rounded-2xl overflow-hidden border border-neutral-200 bg-white dark:bg-neutral-900/60 dark:border-neutral-800/80"
-                  >
-                    <div className="h-28 bg-neutral-100 text-neutral-500 flex items-center justify-center text-sm dark:bg-neutral-800/60 dark:text-neutral-400">
-                      aperçu
-                    </div>
-
-                    <CardContent className="p-4">
-                      <div className="font-medium">{p.title}</div>
-                      <p className="text-neutral-700 dark:text-neutral-300 text-sm mt-1">
-                        {p.desc}
-                      </p>
-
-                      <div className="flex flex-wrap gap-2 mt-2">
-                        {p.tags.map((t, j) => (
-                          <span
-                            key={j}
-                            className="text-xs px-2 py-0.5 rounded-lg border border-neutral-200 text-neutral-800 dark:border-neutral-800/80 dark:text-neutral-200"
-                          >
-                            {t}
-                          </span>
-                        ))}
-                      </div>
-
-                      <div className="mt-3">
-                        <a
-                          className="text-sm underline hover:no-underline"
-                          href={p.link}
-                          target="_blank"
-                          rel="noreferrer"
-                        >
-                          Détails & code
-                        </a>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-            </CodeCell>
-
             {/* Cell: Experience */}
             <MarkdownCell>
               <h2 id="experience" className="text-2xl md:text-3xl font-semibold">
@@ -262,7 +187,7 @@ print('env ready')`}
                   {
                     period: "2024 → 2025",
                     role: "Apprenti Data Scientist",
-                    org: "OpenClassrooms (RNCP 7) × Isphers",
+                    org: "OpenClassrooms (Bac+5) × Isphers",
                     details:
                       "Nettoyage, features, dashboards, intégrations WordPress & data, monitoring.",
                   },
