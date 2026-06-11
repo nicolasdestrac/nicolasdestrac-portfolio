@@ -1,8 +1,26 @@
 import type { Metadata } from "next";
 import { Button } from "@/components/ui/button";
-import { ChevronDown, Cpu, Database, Play, Square, Terminal } from "lucide-react";
+import {
+  ChevronDown,
+  Cpu,
+  Database,
+  ExternalLink,
+  MonitorPlay,
+  Play,
+  Server,
+  Square,
+  Terminal,
+  Youtube,
+} from "lucide-react";
 import { HighlightedCode } from "@/components/HighlightedCode";
 import { Card, CardContent } from "@/components/ui/card";
+import Image from "next/image";
+
+type Resource = {
+  label: string;
+  href: string;
+  type: "api" | "streamlit" | "youtube" | "demo";
+};
 
 export const metadata: Metadata = {
   title: "Projets",
@@ -102,25 +120,74 @@ function CodeCell({
   );
 }
 
+function ResourceIcon({ type }: { type: Resource["type"] }) {
+  switch (type) {
+    case "api":
+      return <Server className="h-3.5 w-3.5" />;
+    case "streamlit":
+      return <MonitorPlay className="h-3.5 w-3.5" />;
+    case "youtube":
+      return <Youtube className="h-3.5 w-3.5" />;
+    case "demo":
+      return <ExternalLink className="h-3.5 w-3.5" />;
+  }
+}
+
 export default function Page() {
-  const projects = [
-    {
-      title: "Classification d'images e-commerce",
-      desc: "Transfer learning (VGG16), data augmentation, réduction de dimension, comparaison par ARI.",
-      tags: ["CNN", "VGG16", "KMeans", "t-SNE"],
-      link: "/projets",
-    },
+  const projects: Array<{
+    title: string;
+    img: string;
+    desc: string;
+    tags: string[];
+    link: string;
+    resources: Resource[];
+  }> = [
     {
       title: "Scoring",
+      img: "/img/Scoring.png",
       desc: "API + app Streamlit déployés, suivi data drift (Evidently).",
       tags: ["Evidently", "Render", "Streamlit"],
       link: "https://github.com/nicolasdestrac/openclassrooms-projet7-scoring",
+      resources: [
+        {
+          label: "API",
+          href: "https://openclassrooms-projet7-scoring-api.onrender.com/",
+          type: "api",
+        },
+        {
+          label: "Streamlit",
+          href: "https://openclassrooms-projet7-scoring-streamlit.onrender.com/",
+          type: "streamlit",
+        },
+      ],
     },
     {
       title: "Sat2Plan",
+      img: "/img/satellite_lewagon.jpg",
       desc: "Transformation d'images satellites en cartes dans le style de Google Maps.",
       tags: ["GAN", "GCP", "Le Wagon"],
       link: "https://github.com/Orolol/sat2plan",
+      resources: [
+        {
+          label: "Vidéo YouTube",
+          href: "https://github.com/Orolol/sat2plan",
+          type: "youtube",
+        },
+      ],
+    },
+    {
+      title: "Classification d'images e-commerce",
+      img: "/img/classifiez_biens_consommation.png",
+      desc: "Transfer learning (VGG16), data augmentation, réduction de dimension, comparaison par ARI.",
+      tags: ["CNN", "VGG16", "KMeans", "t-SNE"],
+      link: "/projets",
+      resources: [
+        {
+          label: "Notebook",
+          href: "/projets",
+          type: "demo",
+        },
+      ],
     },
   ];
 
@@ -144,9 +211,13 @@ export default function Page() {
                     key={i}
                     className="rounded-2xl overflow-hidden border border-neutral-200 bg-white dark:bg-neutral-900/60 dark:border-neutral-800/80"
                   >
-                    <div className="h-28 bg-neutral-100 text-neutral-500 flex items-center justify-center text-sm dark:bg-neutral-800/60 dark:text-neutral-400">
-                      aperçu
-                    </div>
+                    <Image
+                      src={p.img}
+                      alt={p.title}
+                      width={700}
+                      height={350}
+                      className="h-64 w-full object-cover"
+                    />
 
                     <CardContent className="p-4">
                       <div className="font-medium">{p.title}</div>
@@ -174,6 +245,30 @@ export default function Page() {
                         >
                           Détails & code
                         </a>
+                      </div>
+
+                      <div className="mt-3">
+                        <div className="text-xs text-neutral-500 dark:text-neutral-400">
+                          Ressources
+                        </div>
+                        <div className="mt-1.5 flex flex-wrap gap-2">
+                          {p.resources.map((resource) => {
+                            const isExternal = resource.href.startsWith("http");
+
+                            return (
+                              <a
+                                key={resource.label}
+                                className="inline-flex items-center gap-1.5 rounded-lg border border-neutral-200 px-2 py-1 text-xs text-neutral-800 hover:bg-neutral-50 dark:border-neutral-800/80 dark:text-neutral-200 dark:hover:bg-neutral-800/60"
+                                href={resource.href}
+                                target={isExternal ? "_blank" : undefined}
+                                rel={isExternal ? "noreferrer" : undefined}
+                              >
+                                <ResourceIcon type={resource.type} />
+                                {resource.label}
+                              </a>
+                            );
+                          })}
+                        </div>
                       </div>
                     </CardContent>
                   </Card>
